@@ -18,6 +18,7 @@
 #include "helicopter.h"
 #include "fuel_depot.h"
 #include "map_start.h"
+#include "road.h"
 
 
 class Game: public QGraphicsView{

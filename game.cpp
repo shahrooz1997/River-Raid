@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "enemy.h"
 #include "jet.h"
+#include "map_start.h"
 
 Game::Game(QWidget *parent)
 {
@@ -48,7 +49,7 @@ Game::Game(QWidget *parent)
 
     //the more initialize must be here...
 
-//    qDebug() <<"game constructor runed.";
+//    qDebug() <<"game constructor ran.";
 
 }
 
@@ -93,13 +94,13 @@ void Game::game_over()
 
 void Game::create_map()
 {
-    Map_start *a = new Map_start(1);
+//    Map_start *a = new Map_start(1);
 }
 
 
 void Game::make_enemy()
 {
-    int a=qrand()%4;
+    int a=((int)qrand())%4;
     if(a == 0)
         scene()->addItem(new Boat());
     else if(a == 1)

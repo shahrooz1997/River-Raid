@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     score.cpp \
     map.cpp \
     wall.cpp \
-    map_start.cpp
+    map_start.cpp \
+    road.cpp
 
 HEADERS  += \
     airplane.h \
@@ -44,7 +45,8 @@ HEADERS  += \
     temp.h \
     map.h \
     wall.h \
-    map_start.h
+    map_start.h \
+    road.h
 
 RESOURCES += \
     res.qrc

@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <QGraphicsPixmapItem>
 #include "map.h"
-
+#include "road.h"
 
 class Map_start: Map{
 public:
@@ -16,9 +16,8 @@ public slots:
     void move();
 private:
     QTimer *timer;
-    QGraphicsPixmapItem *left;
-    QGraphicsPixmapItem *right;
-    QGraphicsPixmapItem *bridge;
+    Road *left;
+    Road *right;
 
 };
 
