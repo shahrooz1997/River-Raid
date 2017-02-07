@@ -13,6 +13,8 @@
         <file>hc-right.png</file>
         <file>jet.png</file>
         <file>slider.png</file>
+        <file>bridge.png</file>
+        <file>road.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bg.mp3</file>

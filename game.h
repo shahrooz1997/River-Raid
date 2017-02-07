@@ -17,6 +17,7 @@
 #include "jet.h"
 #include "helicopter.h"
 #include "fuel_depot.h"
+#include "map_start.h"
 
 
 class Game: public QGraphicsView{
@@ -30,6 +31,7 @@ public:
     Health *health();
     ~Game();
     void game_over();
+    void create_map();
 
 public slots:
     void make_enemy();
@@ -42,6 +44,7 @@ private:
     QTimer *timer;
     Score *_score;
     Health *_health;
+//    void exchange_map(int a, int b);
 };
 
 

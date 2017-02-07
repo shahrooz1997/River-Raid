@@ -24,7 +24,10 @@ SOURCES += main.cpp \
     health.cpp \
     helicopter.cpp \
     jet.cpp \
-    score.cpp
+    score.cpp \
+    map.cpp \
+    wall.cpp \
+    map_start.cpp
 
 HEADERS  += \
     airplane.h \
@@ -38,7 +41,10 @@ HEADERS  += \
     helicopter.h \
     jet.h \
     score.h \
-    temp.h
+    temp.h \
+    map.h \
+    wall.h \
+    map_start.h
 
 RESOURCES += \
     res.qrc

@@ -44,6 +44,8 @@ Game::Game(QWidget *parent)
     _health = new Health();
     scene()->addItem(_health);
 
+    this->create_map();
+
     //the more initialize must be here...
 
 //    qDebug() <<"game constructor runed.";
@@ -87,6 +89,11 @@ Game::~Game()
 void Game::game_over()
 {
     return;
+}
+
+void Game::create_map()
+{
+    Map_start *a = new Map_start(1);
 }
 
 
