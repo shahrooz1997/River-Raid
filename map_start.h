@@ -4,21 +4,28 @@
 #include <QGraphicsItem>
 #include <QTimer>
 #include <QGraphicsPixmapItem>
-#include "map.h"
+#include "imap.h"
 #include "road.h"
+#include "bridge.h"
 
-class Map_start: Map{
+class Map_start: public IMap, public QGraphicsPixmapItem{
 public:
-    Map_start(bool start, QGraphicsItem *parent = nullptr);
+    Map_start(QGraphicsItem *parent = nullptr);
     ~Map_start();
     int get_width();
+    void show_items(bool start);
+    Road *left();
+    Road *right();
+    Bridge *bridge();
+    void start_timer();
+    void stop_timer();
 public slots:
     void move();
 private:
     QTimer *timer;
-    Road *left;
-    Road *right;
-
+    Road *_left;
+    Road *_right;
+    Bridge *_bridge;
 };
 
 #endif // MAP_START_H

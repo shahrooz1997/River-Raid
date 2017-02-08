@@ -14,6 +14,7 @@ public:
     Airplane(QGraphicsItem *parent=nullptr);
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+    void strat_timer();
     ~Airplane();
 public slots:
     void collision();

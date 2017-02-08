@@ -7,7 +7,7 @@
 #include <QTimer>
 //#include <QMediaPlayer>
 #include <QThread>
-
+#include "game.h"
 
 
 // a singleton class

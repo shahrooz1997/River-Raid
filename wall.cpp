@@ -1,7 +1,17 @@
 #include "wall.h"
+#include "QColor"
 
-
-Wall::Wall(QGraphicsItem *parent)
+Wall::Wall(int width,int height, QGraphicsItem *parent): QGraphicsRectItem(parent)
 {
-    setPixmap(QPixmap(":/images/boat_right.png"));
+    setRect(0, 0, width, height);
+    brush = new QBrush();
+    brush->setColor(*(new QColor(108,152,80)));
+    brush->setStyle(Qt::SolidPattern);
+    setBrush(*brush);
 }
+
+Wall::~Wall()
+{
+    delete brush;
+}
+
