@@ -25,9 +25,9 @@ Game::Game(QWidget *parent)
     this->_airplane->setZValue(10);
     this->scene()->addItem(this->_airplane);
 
-    this->bgsound = new QMediaPlayer();
-    this->bgsound->setMedia(QUrl("qrc:/sounds/bg.mp3"));
-    this->bgsound->play();
+//    this->bgsound = new QMediaPlayer();
+//    this->bgsound->setMedia(QUrl("qrc:/sounds/bg.mp3"));
+//    this->bgsound->play();
 
     //set foot
     _foot = new Footer();
@@ -45,7 +45,7 @@ Game::Game(QWidget *parent)
     _health = new Health();
     scene()->addItem(_health);
 
-    this->create_map();
+//    this->create_map();
 
     //the more initialize must be here...
 
@@ -82,7 +82,7 @@ Game::~Game()
 {
     delete _airplane;
     delete _scene;
-    delete bgsound;
+//    delete bgsound;
     delete _foot;
     delete timer;
 }
@@ -95,6 +95,7 @@ void Game::game_over()
 void Game::create_map()
 {
 //    Map_start *a = new Map_start(1);
+    new Road();
 }
 
 

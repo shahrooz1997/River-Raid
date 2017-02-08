@@ -1,15 +1,18 @@
 #ifndef ROAD_H
 #define ROAD_H
 
-
 #include <QGraphicsPixmapItem>
+#include <QGraphicsItem>
+#include <QObject>
+#include <QTimer>
+//#include <QMediaPlayer>
+#include <QThread>
+
 
 class Road: public QObject, public QGraphicsPixmapItem{
 public:
-    Road(QGraphicsPixmapItem *parent=nullptr);
+    Road(QGraphicsItem *parent=nullptr);
     int get_width();
-private:
-public slots:
 };
 
 #endif // ROAD_H

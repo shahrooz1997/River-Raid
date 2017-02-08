@@ -5,7 +5,7 @@
 #include <QGraphicsItem>
 #include <QObject>
 #include <QTimer>
-#include <QMediaPlayer>
+//#include <QMediaPlayer>
 #include <QThread>
 
 
@@ -20,7 +20,7 @@ public slots:
     void move();
 private:
     Bullet(QGraphicsItem *parent=nullptr);
-    QMediaPlayer *bulletsound;
+//    QMediaPlayer *bulletsound;
     QTimer *timer;
     static Bullet *instance;
 

@@ -1,6 +1,4 @@
 #include <QApplication>
-#include <QtCore>
-#include <QtGui>
 #include "game.h"
 
 Game *game;

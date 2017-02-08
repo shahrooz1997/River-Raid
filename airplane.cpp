@@ -1,12 +1,13 @@
 #include "airplane.h"
 #include <QGraphicsScene>
 #include <QKeyEvent>
-#include "Bullet.h"
 #include <QDebug>
 #include "game.h"
 #include <QImage>
 #include <QBitmap>
 #include <QPixmap>
+#include <typeinfo>
+#include "bullet.h"
 
 extern Game *game;
 

@@ -1,5 +1,5 @@
 #include "map_start.h"
-#include "Game.h"
+#include "game.h"
 
 extern Game *game;
 

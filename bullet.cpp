@@ -4,7 +4,7 @@
 #include "game.h"
 #include <QDebug>
 #include <typeinfo>
-#include"enemy.h"
+#include "enemy.h"
 extern Game *game;
 
 Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
@@ -12,9 +12,9 @@ Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
     //set the pic of bullet
     setPixmap(QPixmap(":/images/bullet.png"));
     //initialize the sound
-    this->bulletsound = new QMediaPlayer();
-    this->bulletsound->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
-    this->bulletsound->play();
+//    this->bulletsound = new QMediaPlayer();
+//    this->bulletsound->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
+//    this->bulletsound->play();
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -37,7 +37,7 @@ Bullet::~Bullet()
 {
     instance = nullptr;
     delete timer;
-    delete bulletsound;
+//    delete bulletsound;
 }
 
 void Bullet::move(){

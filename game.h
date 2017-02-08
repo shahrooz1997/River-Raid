@@ -6,7 +6,7 @@
 #include <QGraphicsView>
 #include <QTimer>
 #include <QObject>
-#include <QMediaPlayer>
+//#include <QMediaPlayer>
 #include "footer.h"
 #include <QTimer>
 #include "enemy.h"
@@ -19,7 +19,6 @@
 #include "fuel_depot.h"
 #include "map_start.h"
 #include "road.h"
-
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -40,7 +39,7 @@ public slots:
 private:
     Airplane *_airplane;
     QGraphicsScene *_scene;
-    QMediaPlayer *bgsound;
+//    QMediaPlayer *bgsound;
     Footer *_foot;
     QTimer *timer;
     Score *_score;
