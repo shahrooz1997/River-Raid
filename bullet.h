@@ -19,7 +19,7 @@ public:
 public slots:
     void move();
 private:
-    Bullet(QGraphicsItem *parent=nullptr);
+    Bullet(QGraphicsItem *parent = 0);
 //    QMediaPlayer *bulletsound;
     QTimer *timer;
     static Bullet *instance;

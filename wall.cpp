@@ -1,5 +1,6 @@
 #include "wall.h"
 #include "QColor"
+#include <QMargins>
 
 Wall::Wall(int width,int height, QGraphicsItem *parent): QGraphicsRectItem(parent)
 {

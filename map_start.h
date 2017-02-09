@@ -10,7 +10,8 @@
 
 class Map_start: public IMap, public QGraphicsPixmapItem{
 public:
-    Map_start(QGraphicsItem *parent = nullptr);
+
+    Map_start(QGraphicsItem *parent = 0);
     ~Map_start();
     int get_width();
     void show_items(bool start);

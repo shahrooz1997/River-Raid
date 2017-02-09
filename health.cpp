@@ -28,5 +28,6 @@ int Health::get_health()
 void Health::dec_health()
 {
     health -= 1;
+    setPlainText(QString::number(health));
     return;
 }

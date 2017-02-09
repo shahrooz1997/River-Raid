@@ -22,11 +22,12 @@
 #include "bridge.h"
 #include "mymap.h"
 #include "wall.h"
+#include "QPushButton"
 
 class Game: public QGraphicsView{
     Q_OBJECT
 public:
-    Game(QWidget *parent=0);
+    Game();
     QGraphicsScene* scene();
     Airplane* airplane();
     Footer *foot();
@@ -34,17 +35,21 @@ public:
     Health *health();
     ~Game();
     void game_over();
+    void dispalyMenu();
+    void dec_health();
+    void restart();
     void start_timer();
     void stop_timer();
     MyMap *active_map();
-    MyMap *next_map();\
+    MyMap *next_map();
     Map_start *start_map();
     void initial_map();
-
+    QGraphicsTextItem *titleText();
 public slots:
     void make_enemy();
     void create_map();
     void stop_the_map();
+    void start();
 
 private:
     Airplane *_airplane;
@@ -59,6 +64,7 @@ private:
     MyMap *_next_map;
     QTimer *timer_for_start;
     Map_start* _start_map;
+    QGraphicsTextItem *_titleText;
 };
 
 

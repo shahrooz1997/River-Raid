@@ -6,7 +6,8 @@
 
 class Wall: public QGraphicsRectItem{
 public:
-    Wall(int width, int hieght = 600, QGraphicsItem *parent = nullptr);
+
+    Wall(int width, int hieght = 600, QGraphicsItem *parent = 0);
     ~Wall();
 private:
     QBrush *brush;

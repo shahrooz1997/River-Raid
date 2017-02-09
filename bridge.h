@@ -11,7 +11,7 @@
 
 class Bridge: public QObject, public QGraphicsPixmapItem{
 public:
-    Bridge(QGraphicsItem *parent=nullptr);
+    Bridge(QGraphicsItem *parent=0);
     int get_width();
 };
 

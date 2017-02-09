@@ -15,7 +15,7 @@ MyMap::MyMap(int help)
         _left->setPos(0,-680);
         _right = new Wall(100);
         _right->setPos(700,-680);
-        _mid = nullptr;
+        _mid = 0;
     }
     else if(a == 1)
     {
@@ -23,7 +23,7 @@ MyMap::MyMap(int help)
         _left->setPos(0,-680);
         _right = new Wall(200);
         _right->setPos(600,-680);
-        _mid = nullptr;
+        _mid = 0;
     }
     else if(a == 2)
     {

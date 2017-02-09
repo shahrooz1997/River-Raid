@@ -15,7 +15,6 @@ TEMPLATE = app
 SOURCES += main.cpp \
     airplane.cpp \
     boat.cpp \
-    bullet.cpp \
     enemy.cpp \
     footer.cpp \
     fuel_depot.cpp \
@@ -28,7 +27,8 @@ SOURCES += main.cpp \
     road.cpp \
     bridge.cpp \
     wall.cpp \
-    mymap.cpp
+    mymap.cpp \
+    bullet.cpp
 
 HEADERS  += \
     airplane.h \

@@ -36,7 +36,7 @@ Bullet *Bullet::get_instance()
 
 Bullet::~Bullet()
 {
-    instance = nullptr;
+    instance = 0;
     delete timer;
 //    delete bulletsound;
 }
@@ -124,6 +124,20 @@ void Bullet::move(){
             qDebug() << "the bullet hit Bridge.";
             // remove them from the scene (still on the heap)
             scene()->removeItem(colliding_items[i]);
+            scene()->removeItem(this);
+            // delete them from the heap to save memory
+            delete this;
+
+            // return (all code below refers to a non existint bullet)
+            return;
+        }
+        else if(typeid(*(colliding_items[i])) == typeid(Wall))
+        {
+            // increase the score
+//            game->score()->inc_score(500);
+            qDebug() << "the bullet hit Wall.";
+            // remove them from the scene (still on the heap)
+//            scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
             // delete them from the heap to save memory
             delete this;

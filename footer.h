@@ -12,7 +12,7 @@ class Footer:public QThread, public QGraphicsPixmapItem{
 public:
     Footer();
     QGraphicsPixmapItem *slider();
-//public slots:
+    //public slots:
 //    void move_slider();
 private:
     QGraphicsPixmapItem *_slider;
