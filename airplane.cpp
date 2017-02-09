@@ -95,7 +95,7 @@ void Airplane::collision()
     {
         if(typeid(*(colliding_items[i])) != typeid(Fuel_depot) && typeid(*(colliding_items[i])) != typeid(Bullet))
         {
-//            decrease health;
+            //decrease health;
             game->dec_health();
             // remove them from the scene (still on the heap)
 
@@ -105,7 +105,8 @@ void Airplane::collision()
 
             // delete them from the heap to save memory
             if(typeid(*(colliding_items[i])) != typeid(Road) && typeid(*(colliding_items[i])) != typeid(Bridge) && typeid(*(colliding_items[i])) != typeid(Wall))
-                delete colliding_items[i];
+                if(colliding_items[i] != 0)
+                    delete colliding_items[i];
 //            delete this;
             return;
         }

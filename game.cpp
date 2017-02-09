@@ -160,7 +160,7 @@ QGraphicsTextItem *Game::titleText()
 
 void Game::create_map()
 {
-    static int counter = 0;
+    static int counter = 1;
     if(counter % 5 == 0 || counter % 5 == 4)
         _active_map = new MyMap(1);
     else
@@ -223,9 +223,11 @@ void Game::dec_health()
     _health->dec_health();
     QList<QGraphicsItem*> mitem = _scene->items();
     //health,score,foot,aiplane
-    foreach (QGraphicsItem* it, mitem) {
-        if((typeid(*it) != typeid(Airplane)) && (typeid(*it) != typeid(Score)) && (typeid(*it) != typeid(Health)) && (typeid(*it) != typeid(Footer)) &&  (typeid(*it) != typeid(QGraphicsPixmapItem)))
-        this->scene()->removeItem(it);
+    for(int i =0 ;i<mitem.size();i++) {
+        if((typeid(*mitem[i]) != typeid(Airplane)) && (typeid(*mitem[i]) != typeid(Score)) && (typeid(*mitem[i]) != typeid(Health)) && (typeid(*mitem[i]) != typeid(Footer)) &&  (typeid(*mitem[i]) != typeid(QGraphicsPixmapItem)))
+        {
+            this->scene()->removeItem(mitem[i]);
+        }
     }
     if(_health->get_health() == 0) {
         game_over();

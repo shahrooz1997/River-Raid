@@ -130,9 +130,9 @@ void MyMap::set_smooth(int now)
             for(int i = 0; i < 4; i++)
             {
                 _smoother_left[i] = new Wall(100, 19);
-                _smoother_left[i]->setPos(0,-4-19*i);
+                _smoother_left[i]->setPos(0,-23-19*i);
                 _smoother_right[i] = new Wall(100, 19);
-                _smoother_right[i]->setPos(700, -4-19*i);
+                _smoother_right[i]->setPos(700, -23-19*i);
                 _smoother_mid[i] = 0;
             }
         }
@@ -141,9 +141,9 @@ void MyMap::set_smooth(int now)
             for(int i = 0; i < 4; i++)
             {
                 _smoother_left[i] = new Wall(200, 19);
-                _smoother_left[i]->setPos(0,-4-19*i);
+                _smoother_left[i]->setPos(0,-23-19*i);
                 _smoother_right[i] = new Wall(200, 19);
-                _smoother_right[i]->setPos(600, -4-19*i);
+                _smoother_right[i]->setPos(600, -23-19*i);
                 _smoother_mid[i] = 0;
             }
         }
@@ -152,11 +152,11 @@ void MyMap::set_smooth(int now)
             for(int i=0;i<4;i++)
             {
                 _smoother_left[i] = new Wall(100, 19);
-                _smoother_left[i]->setPos(0,-4-19*i);
+                _smoother_left[i]->setPos(0,-23-19*i);
                 _smoother_right[i] = new Wall(100, 19);
-                _smoother_right[i]->setPos(700, -4-19*i);
+                _smoother_right[i]->setPos(700, -23-19*i);
                 _smoother_mid[i] = new Wall(200,19);
-                _smoother_mid[i]->setPos(300,-4-19*i);
+                _smoother_mid[i]->setPos(300,-23-19*i);
             }
         }
         else if(now == 3)
@@ -164,11 +164,11 @@ void MyMap::set_smooth(int now)
             for(int i=0;i<4;i++)
             {
                 _smoother_left[i] = new Wall(100, 19);
-                _smoother_left[i]->setPos(0,-4-19*i);
+                _smoother_left[i]->setPos(0,-23-19*i);
                 _smoother_right[i] = new Wall(100, 19);
-                _smoother_right[i]->setPos(700, -4-19*i);
+                _smoother_right[i]->setPos(700, -23-19*i);
                 _smoother_mid[i] = new Wall(100,19);
-                _smoother_mid[i]->setPos(350,-4-19*i);
+                _smoother_mid[i]->setPos(350,-23-19*i);
             }
         }
         return;
@@ -178,9 +178,9 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(120 + i * 20, 19);
-            _smoother_left[i]->setPos(0,4 - 19 * i);
+            _smoother_left[i]->setPos(0,-23 - 19 * i);
             _smoother_right[i] = new Wall(120 + i * 20, 19);
-            _smoother_right[i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[i] = 0;
         }
     }
@@ -189,11 +189,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(200, 19);
-            _smoother_left[i]->setPos(0,-4-19*i);
+            _smoother_left[i]->setPos(0,-23-19*i);
             _smoother_right[i] = new Wall(200, 19);
-            _smoother_right[i]->setPos(600, -4-19*i);
+            _smoother_right[i]->setPos(600, -23-19*i);
             _smoother_mid[i] = new Wall(20+i*46,19);
-            _smoother_mid[i]->setPos(390-i*23,-4-19*i);
+            _smoother_mid[i]->setPos(390-i*23,-23-19*i);
         }
     }
     else if(before_state == 0 && now == 3)
@@ -201,11 +201,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(200, 19);
-            _smoother_left[i]->setPos(0,-4-19*i);
+            _smoother_left[i]->setPos(0,-23-19*i);
             _smoother_right[i] = new Wall(200, 19);
-            _smoother_right[i]->setPos(600, -4-19*i);
+            _smoother_right[i]->setPos(600, -23-19*i);
             _smoother_mid[i] = new Wall(10+i*22,19);
-            _smoother_mid[i]->setPos(395-i*11,-4-19*i);
+            _smoother_mid[i]->setPos(395-i*11,-23-19*i);
         }
     }
     else if(before_state == 1 && now == 0)
@@ -213,9 +213,9 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_left[3-i]->setPos(0,4 - 19 * i);
+            _smoother_left[3-i]->setPos(0,-23 - 19 * i);
             _smoother_right[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_right[3-i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[3-i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[3-i] = 0;
         }
     }
@@ -224,11 +224,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_left[3-i]->setPos(0,4 - 19 * i);
+            _smoother_left[3-i]->setPos(0,-23 - 19 * i);
             _smoother_right[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_right[3-i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[3-i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[i] = new Wall(20+i*46,19);
-            _smoother_mid[i]->setPos(390-i*23,-4-19*i);
+            _smoother_mid[i]->setPos(390-i*23,-23-19*i);
         }
     }
     else if(before_state == 1 && now == 3)
@@ -236,11 +236,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_left[3-i]->setPos(0,4 - 19 * i);
+            _smoother_left[3-i]->setPos(0,-23- 19 * i);
             _smoother_right[3-i] = new Wall(120 + i * 20, 19);
-            _smoother_right[3-i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[3-i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[i] = new Wall(10+i*22,19);
-            _smoother_mid[i]->setPos(395-i*11,-4-19*i);
+            _smoother_mid[i]->setPos(395-i*11,-23-19*i);
         }
     }
     else if(before_state == 2 && now == 0)
@@ -248,11 +248,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[3-i] = new Wall(200, 19);
-            _smoother_left[3-i]->setPos(0,-4-19*i);
+            _smoother_left[3-i]->setPos(0,-23-19*i);
             _smoother_right[3-i] = new Wall(200, 19);
-            _smoother_right[3-i]->setPos(600, -4-19*i);
+            _smoother_right[3-i]->setPos(600, -23-19*i);
             _smoother_mid[3-i] = new Wall(20+i*46,19);
-            _smoother_mid[3-i]->setPos(390-i*23,-4-19*i);
+            _smoother_mid[3-i]->setPos(390-i*23,-23-19*i);
         }
     }
     else if(before_state == 2 && now == 1)
@@ -260,11 +260,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(120 + i * 20, 19);
-            _smoother_left[i]->setPos(0,4 - 19 * i);
+            _smoother_left[i]->setPos(0,-23- 19 * i);
             _smoother_right[i] = new Wall(120 + i * 20, 19);
-            _smoother_right[i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[3-i] = new Wall(20+i*46,19);
-            _smoother_mid[3-i]->setPos(390-i*23,-4-19*i);
+            _smoother_mid[3-i]->setPos(390-i*23,-23-19*i);
         }
     }
     else if(before_state == 2 && now == 3)
@@ -272,11 +272,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[3-i] = new Wall(200, 19);
-            _smoother_left[3-i]->setPos(0,-4-19*i);
+            _smoother_left[3-i]->setPos(0,-23-19*i);
             _smoother_right[3-i] = new Wall(200, 19);
-            _smoother_right[3-i]->setPos(600, -4-19*i);
+            _smoother_right[3-i]->setPos(600, -23-19*i);
             _smoother_mid[3-i] = new Wall(110+i*22,19);
-            _smoother_mid[3-i]->setPos(345-i*11,-4-19*i);
+            _smoother_mid[3-i]->setPos(345-i*11,-23-19*i);
         }
     }
     /////
@@ -285,11 +285,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(200, 19);
-            _smoother_left[i]->setPos(0,-4-19*i);
+            _smoother_left[i]->setPos(0,-23-19*i);
             _smoother_right[i] = new Wall(200, 19);
-            _smoother_right[i]->setPos(600, -4-19*i);
+            _smoother_right[i]->setPos(600, -23-19*i);
             _smoother_mid[3-i] = new Wall(10+i*22,19);
-            _smoother_mid[3-i]->setPos(395-i*11,-4-19*i);
+            _smoother_mid[3-i]->setPos(395-i*11,-23-19*i);
         }
     }
     else if(before_state == 3 && now == 1)
@@ -297,11 +297,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(120 + i * 20, 19);
-            _smoother_left[i]->setPos(0,4 - 19 * i);
+            _smoother_left[i]->setPos(0,-23 - 19 * i);
             _smoother_right[i] = new Wall(120 + i * 20, 19);
-            _smoother_right[i]->setPos(620+i*20, 4-19*i);
+            _smoother_right[i]->setPos(620+i*20, -23-19*i);
             _smoother_mid[3-i] = new Wall(10+i*22,19);
-            _smoother_mid[3-i]->setPos(395-i*11,-4-19*i);
+            _smoother_mid[3-i]->setPos(395-i*11,-23-19*i);
         }
     }
     else if(before_state == 3 && now == 2)
@@ -309,11 +309,11 @@ void MyMap::set_smooth(int now)
         for(int i = 0; i < 4; i++)
         {
             _smoother_left[i] = new Wall(200, 19);
-            _smoother_left[i]->setPos(0,-4-19*i);
+            _smoother_left[i]->setPos(0,-23-19*i);
             _smoother_right[i] = new Wall(200, 19);
-            _smoother_right[i]->setPos(600, -4-19*i);
+            _smoother_right[i]->setPos(600, -23-19*i);
             _smoother_mid[i] = new Wall(110+i*22,19);
-            _smoother_mid[i]->setPos(345-i*11,-4-19*i);
+            _smoother_mid[i]->setPos(345-i*11,-23-19*i);
         }
     }
     return;
