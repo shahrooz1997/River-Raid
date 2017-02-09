@@ -14,6 +14,7 @@ public:
     Airplane(QGraphicsItem *parent = 0);
     void keyPressEvent(QKeyEvent *event);
     void keyReleaseEvent(QKeyEvent *event);
+    void strat_timer();
     ~Airplane();
     QTimer *getTimer() const;
     QTimer *getTimer2() const;

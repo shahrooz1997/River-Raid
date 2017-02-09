@@ -13,13 +13,14 @@ Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(100);
+    timer->start(50);
 
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()), this, SLOT(movex()));
     movingx=0;
 
 }
+
 
 Enemy::~Enemy()
 {

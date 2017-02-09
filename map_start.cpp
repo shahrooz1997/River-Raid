@@ -1,63 +1,81 @@
 #include "map_start.h"
 #include "game.h"
 
-extern Game *game;
+extern Game *game1;
 
-Map_start::Map_start(bool start, QGraphicsItem *parent)
+Map_start::Map_start(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
-    left = new Road();
-    right = new Road();
-    left->setPos(0,-20);
-    right->setPos(464,-20);
+    _left = new Road();
+    _right = new Road();
+    _left->setPos(-32,-80);
+    _right->setPos(496,-80);
+    _bridge = new Bridge();
+    _bridge->setPos(304,-74);
 
-//    bridge = new QGraphicsPixmapItem(parent);
-//    bridge->setPixmap(QPixmap(":/images/bridge.png"));
-//    bridge->setPos(336,-20);
-
-//    game->scene()->addItem(left);
-//    game->scene()->addItem(right);
-
-//    if(start)
-//    {
-//        game->scene()->addItem(bridge);
-//    }
-
-//    timer = new QTimer();
-//    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-//    timer->start(50);
+    timer = new QTimer();
+    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
+    timer->start(50);
 }
 
 Map_start::~Map_start()
 {
-//    delete timer;
-//    delete right;
-//    delete left;
-//    delete bridge;
+    delete timer;
+    delete _right;
+    delete _left;
+    delete _bridge;
 }
 
 int Map_start::get_width()
 {
-    return left->get_width();
+    return _left->get_width();
 }
 
-void Map_start::move()
+void Map_start::show_items(bool start)
 {
+    game1->scene()->addItem(_left);
+    game1->scene()->addItem(_right);
+    if(!start)
+        game1->scene()->addItem(_bridge);
     return;
 }
 
-//void Map_start::move()
-//{
-//    right->setPos(right->x(),right->y()+10);
-//    left->setPos(left->x(),left->y()+10);
-//    bridge->setPos(bridge->x(),bridge->y()+10);
+Road *Map_start::left()
+{
+    return _left;
+}
 
-//    if(right->y()>600)
-//    {
-//        delete right;
-//        delete left;
-//        delete bridge;
-//        return;
-//    }
+Road *Map_start::right()
+{
+    return _right;
+}
 
-//    return;
-//}
+Bridge *Map_start::bridge()
+{
+    return _bridge;
+}
+
+void Map_start::start_timer()
+{
+    timer->start(50);
+}
+
+void Map_start::stop_timer()
+{
+    timer->stop();
+}
+
+
+void Map_start::move()
+{
+    _right->setPos(_right->x(),_right->y()+5);
+    _left->setPos(_left->x(),_left->y()+5);
+    _bridge->setPos(_bridge->x(),_bridge->y()+5);
+
+    if(_right->y()>600)
+    {
+        delete this;
+        return;
+    }
+
+    return;
+}

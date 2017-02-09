@@ -4,7 +4,8 @@
 #include "game.h"
 #include <QDebug>
 #include <typeinfo>
-#include"enemy.h"
+#include "bridge.h"
+#include "enemy.h"
 extern Game *game;
 
 Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
@@ -100,6 +101,31 @@ void Bullet::move(){
             scene()->removeItem(this);
             // delete them from the heap to save memory
             delete colliding_items[i];
+            delete this;
+
+            // return (all code below refers to a non existint bullet)
+            return;
+        }
+        else if(typeid(*(colliding_items[i])) == typeid(Road))
+        {
+            qDebug() << "the bullet hit Road.";
+            // remove them from the scene (still on the heap)
+            scene()->removeItem(this);
+            // delete them from the heap to save memory
+            delete this;
+
+            // return (all code below refers to a non existint bullet)
+            return;
+        }
+        else if(typeid(*(colliding_items[i])) == typeid(Bridge))
+        {
+            // increase the score
+            game->score()->inc_score(500);
+            qDebug() << "the bullet hit Bridge.";
+            // remove them from the scene (still on the heap)
+            scene()->removeItem(colliding_items[i]);
+            scene()->removeItem(this);
+            // delete them from the heap to save memory
             delete this;
 
             // return (all code below refers to a non existint bullet)

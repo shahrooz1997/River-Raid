@@ -20,9 +20,13 @@ Game::Game(QWidget *parent)
     this->setFixedSize(800,600);
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
 
-    //initialize the airplane
-
-//    this->create_map();
+    //you should change the location of these code to start()
+    map_timer = new QTimer();
+    connect(map_timer, SIGNAL(timeout()),this, SLOT(create_map()));
+//    map_timer->start(6000);
+    timer_for_start = new QTimer();
+    connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
+    timer_for_start->start(5150);
 
     //the more initialize must be here...
 
@@ -107,10 +111,89 @@ void Game::game_over()
     return;
 }
 
+void Game::start_timer()
+{
+    timer->start(2000);
+    map_timer->start(6760);
+}
+
+MyMap *Game::active_map()
+{
+    return _active_map;
+}
+
+MyMap *Game::next_map()
+{
+    return _next_map;
+}
+
+Map_start *Game::start_map()
+{
+    return _start_map;
+}
+
+void Game::initial_map()
+{
+    _start_map = new Map_start();
+    scene()->addItem(start_map()->left());
+    scene()->addItem(start_map()->right());
+
+    _active_map = new MyMap(1);
+    scene()->addItem(active_map()->left());
+    scene()->addItem(active_map()->right());
+    if(active_map()->mid()!=0)
+        scene()->addItem(active_map()->mid());
+
+//    for(int i=0;i<4;i++)
+//    {
+//        if(active_map()->smoother_left()[i]!=0)
+//            scene()->addItem(active_map()->smoother_left()[i]);
+//        if(active_map()->smoother_right()[i]!=0)
+//            scene()->addItem(active_map()->smoother_right()[i]);
+//        if(active_map()->smoother_mid()[i]!=0)
+//            scene()->addItem(active_map()->smoother_mid()[i]);
+//    }
+}
+
 void Game::create_map()
 {
-//    Map_start *a = new Map_start(1);
-    new Road();
+    static int counter = 0;
+    if(counter % 5 == 0 || counter % 5 == 4)
+        _active_map = new MyMap(1);
+    else
+        _active_map = new MyMap(0);
+    if(counter % 5 == 0)
+    {
+        Map_start *start = new Map_start();
+        scene()->addItem(start->left());
+        scene()->addItem(start->right());
+        scene()->addItem(start->bridge());
+    }
+    else
+    {
+        for(int i=0;i<4;i++)
+        {
+            if(active_map()->smoother_left()[i]!=0)
+                scene()->addItem(active_map()->smoother_left()[i]);
+            if(active_map()->smoother_right()[i]!=0)
+                scene()->addItem(active_map()->smoother_right()[i]);
+            if(active_map()->smoother_mid()[i]!=0)
+                scene()->addItem(active_map()->smoother_mid()[i]);
+        }
+    }
+    scene()->addItem(active_map()->left());
+    scene()->addItem(active_map()->right());
+    if(active_map()->mid()!=0)
+        scene()->addItem(active_map()->mid());
+
+    counter++;
+}
+
+void Game::stop_the_map()
+{
+    this->active_map()->stop_timer();
+    this->start_map()->stop_timer();
+    timer_for_start->stop();
 }
 
 void Game::dispalyMenu() {

@@ -25,15 +25,19 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(collision()));
-    timer->start(50);
+//    timer->start(50);
 
     fuel=100;
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()), this, SLOT(dec_fuel()));
-    timer2->start(200);
+//    timer2->start(200);
+
 }
 
 void Airplane::keyPressEvent(QKeyEvent *event){
+    //start game by space
+    static bool start=1;
+
     // move the player left and right
     if (event->key() == Qt::Key_Left){
         setPixmap(QPixmap(":/images/ap_left.png"));
@@ -47,8 +51,18 @@ void Airplane::keyPressEvent(QKeyEvent *event){
     }
     // shoot with the spacebar
     else if (event->key() == Qt::Key_Space){
-        // create a bullet
-        Bullet::get_instance();
+        if(start == 1)
+        {
+            start = 0;
+            strat_timer();
+            game->start_timer();
+            game->active_map()->start_timer();
+            game->start_map()->start_timer();
+//            game->next_map()->start_timer();
+        }
+        else
+            // create a bullet
+            Bullet::get_instance();
     }
 }
 
@@ -57,6 +71,12 @@ void Airplane::keyReleaseEvent(QKeyEvent *event)
     if((event->key() == Qt::Key_Right) || (event->key() == Qt::Key_Left))
         setPixmap(QPixmap(":/images/ap.png"));
     return;
+}
+
+void Airplane::strat_timer()
+{
+    timer->start(50);
+    timer2->start(400);
 }
 
 Airplane::~Airplane()
@@ -78,11 +98,14 @@ void Airplane::collision()
 //            decrease health;
             game->dec_health();
             // remove them from the scene (still on the heap)
-            scene()->removeItem(colliding_items[i]);
+
+            if(typeid(*(colliding_items[i])) != typeid(Road))
+                scene()->removeItem(colliding_items[i]);
 //            scene()->removeItem(this);
 
             // delete them from the heap to save memory
-            delete colliding_items[i];
+            if(typeid(*(colliding_items[i])) != typeid(Road) && typeid(*(colliding_items[i])) != typeid(Bridge))
+                delete colliding_items[i];
 //            delete this;
             return;
         }
@@ -112,7 +135,10 @@ void Airplane::dec_fuel()
 
 void Airplane::inc_fuel()
 {
-    fuel+=1;
+
+    if(fuel > 100)
+        return;
+    fuel+=2;
     if(fuel > 100)
         fuel=100;
 //    qDebug() << "fuel inc 5 unit\n";

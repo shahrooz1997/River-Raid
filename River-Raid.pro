@@ -23,10 +23,11 @@ SOURCES += main.cpp \
     helicopter.cpp \
     jet.cpp \
     score.cpp \
-    map.cpp \
-    wall.cpp \
     map_start.cpp \
     road.cpp \
+    bridge.cpp \
+    wall.cpp \
+    mymap.cpp \
     bullet.cpp
 
 HEADERS  += \
@@ -42,10 +43,12 @@ HEADERS  += \
     jet.h \
     score.h \
     temp.h \
-    map.h \
-    wall.h \
     map_start.h \
-    road.h
+    road.h \
+    bridge.h \
+    imap.h \
+    wall.h \
+    mymap.h
 
 RESOURCES += \
     res.qrc

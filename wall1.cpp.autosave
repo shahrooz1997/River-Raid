@@ -1,0 +1,12 @@
+#include "wall1.h"
+#include "QBrush"
+
+
+Wall1::Wall1(QGraphicsItem *parent): QGraphicsRectItem(parent)
+{
+    setRect(0,0,100,250);
+    QBrush brush();
+    brush.setColor(Qt::green);
+    brush().setStyle(Qt::SolidPattern);
+    setBrush(brush);
+}

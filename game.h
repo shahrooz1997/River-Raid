@@ -19,6 +19,9 @@
 #include "fuel_depot.h"
 #include "map_start.h"
 #include "road.h"
+#include "bridge.h"
+#include "mymap.h"
+#include "wall.h"
 
 class Game: public QGraphicsView{
     Q_OBJECT
@@ -31,13 +34,21 @@ public:
     Health *health();
     ~Game();
     void game_over();
-    void create_map();
     void dispalyMenu();
     void dec_health();
     void restart();
+    void start_timer();
+    void stop_timer();
+    MyMap *active_map();
+    MyMap *next_map();\
+    Map_start *start_map();
+    void initial_map();
 public slots:
     void make_enemy();
+    void create_map();
+    void stop_the_map();
     void start();
+
 private:
     Airplane *_airplane;
     QGraphicsScene *_scene;
@@ -46,7 +57,11 @@ private:
     QTimer *timer;
     Score *_score;
     Health *_health;
-//    void exchange_map(int a, int b);
+    QTimer *map_timer;
+    MyMap *_active_map;
+    MyMap *_next_map;
+    QTimer *timer_for_start;
+    Map_start* _start_map;
 };
 
 

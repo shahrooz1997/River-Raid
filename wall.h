@@ -1,12 +1,16 @@
 #ifndef WALL_H
 #define WALL_H
 
-#include "map.h"
+#include <QGraphicsRectItem>
+#include "QBrush"
 
-class Wall: public Map{
+class Wall: public QGraphicsRectItem{
 public:
-    Wall(QGraphicsItem *parent = 0);
+
+    Wall(int width, int hieght = 600, QGraphicsItem *parent = 0);
+    ~Wall();
 private:
+    QBrush *brush;
 };
 
 #endif // WALL_H
