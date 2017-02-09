@@ -11,7 +11,10 @@ class Enemy : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     Enemy(QGraphicsItem *parent=0);
+//    Enemy(QGraphicsItem *parent=0,int speed = 5);
     ~Enemy();
+
+    void setSpeed(int value);
 
 public slots:
     void move();
@@ -19,6 +22,7 @@ public slots:
 
 protected:
     int xspeed;
+    static int speed;
     bool direction;
     bool movingx;
     QTimer *timer;

@@ -43,6 +43,9 @@ void Airplane::keyPressEvent(QKeyEvent *event){
         if (pos().x() > 0)
         setPos(x()-20,y());
     }
+    if (event->key() == Qt::Key_Up){
+        game->setSpeed(10);
+    }
     else if (event->key() == Qt::Key_Right){
         setPixmap(QPixmap(":/images/ap-right.png"));
         if (pos().x() + pixmap().width() < 800)
@@ -69,6 +72,9 @@ void Airplane::keyReleaseEvent(QKeyEvent *event)
 {
     if((event->key() == Qt::Key_Right) || (event->key() == Qt::Key_Left))
         setPixmap(QPixmap(":/images/ap.png"));
+    if (event->key() == Qt::Key_Up){
+        game->setSpeed(5);
+    }
     return;
 }
 

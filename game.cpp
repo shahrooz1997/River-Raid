@@ -19,7 +19,7 @@ Game::Game()
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->setFixedSize(800,600);
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
-
+    speed = 5;
     //you should change the location of these code to start()
     map_timer = new QTimer();
     connect(map_timer, SIGNAL(timeout()),this, SLOT(create_map()));
@@ -143,6 +143,7 @@ Map_start *Game::start_map()
 void Game::make_next_map()
 {
     _next_map = new MyMap(1);
+    this->_next_map->setSpeed(speed);
     return;
 }
 
@@ -153,6 +154,7 @@ void Game::initial_map()
     scene()->addItem(start_map()->right());
 
     _active_map = new MyMap(1);
+    this->_active_map->setSpeed(speed);
     scene()->addItem(active_map()->left());
     scene()->addItem(active_map()->right());
     if(active_map()->mid()!=0)
@@ -177,10 +179,14 @@ QGraphicsTextItem *Game::titleText()
 void Game::create_map()
 {
     static int counter = 1;
-    if(counter % 5 == 0 || counter % 5 == 4)
+    if(counter % 5 == 0 || counter % 5 == 4) {
         _active_map = new MyMap(1);
-    else
+        _active_map->setSpeed(speed);
+    }
+    else {
         _active_map = new MyMap(0);
+        _active_map->setSpeed(speed);
+    }
     if(counter % 5 == 0)
     {
         Map_start *start = new Map_start();
@@ -267,17 +273,18 @@ void Game::restart()
 {
         _airplane->setPos(380,550-115);
         _airplane->re_fuel();                
+        this->initial_map();
 }
 
 void Game::start()
-{
+{    
 //    _scene->clear();
    QList<QGraphicsItem*> mitem = _scene->items();
    foreach (QGraphicsItem* it, mitem) {
        _scene->removeItem(it);
    }      
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
-    this->_airplane = new Airplane();
+    this->_airplane = new Airplane();   
     //must change and enhance
 //    this->_airplane->setFlag(QGraphicsItem::ItemIsFocusable);
 //    this->_airplane->setFocus();
@@ -309,6 +316,11 @@ void Game::start()
     timer_for_start = new QTimer();
     connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
     timer_for_start->start(5050);
+}
+
+void Game::setSpeed(int value)
+{
+    speed = value;
 }
 
 QPushButton *Game::getCancelg() const
@@ -350,14 +362,23 @@ QPushButton *Game::play() const
 void Game::make_enemy()
 {
     int a=((int)qrand())%4;
-    if(a == 0)
-        scene()->addItem(new Boat());
-    else if(a == 1)
-        scene()->addItem(new Fuel_depot());
-    else if(a == 2)
-        scene()->addItem(new Jet());
-    else if(a == 3)
-        scene()->addItem(new Helicopter());
-
+    Enemy* myEnemy;
+    if(a == 0) {
+        myEnemy = new Boat();
+        scene()->addItem(myEnemy);
+    }
+    else if(a == 1) {
+        myEnemy = new Fuel_depot();
+        scene()->addItem(myEnemy);
+    }
+    else if(a == 2) {
+        myEnemy = new Jet();
+        scene()->addItem(myEnemy);
+    }
+    else if(a == 3) {
+        myEnemy = new Helicopter();
+        scene()->addItem(myEnemy);
+    }
+    myEnemy->setSpeed(speed);
     return;
 }

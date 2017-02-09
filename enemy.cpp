@@ -11,16 +11,31 @@ Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     setPos(qrand()%800,-20);
 
     direction = qrand()%2;//1: right     0:left
-
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
     timer->start(50);
-
+    speed = 5;
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()), this, SLOT(movex()));
     movingx=0;
 
 }
+
+//Enemy::Enemy(QGraphicsItem *parent, int speed)
+//{
+//    /* a random number */
+//    setPos(qrand()%800,-20);
+
+//    direction = qrand()%2;//1: right     0:left
+//    this->speed = speed;
+//    timer = new QTimer(this);
+//    connect(timer, SIGNAL(timeout()), this, SLOT(move()));
+//    timer->start(50);
+
+//    timer2 = new QTimer(this);
+//    connect(timer2, SIGNAL(timeout()), this, SLOT(movex()));
+//    movingx=0;
+//}
 
 
 Enemy::~Enemy()
@@ -31,7 +46,7 @@ Enemy::~Enemy()
 
 void Enemy::move()
 {
-    setPos(x(),y()+5);
+    setPos(x(),y()+speed);
     if(movingx == 0 && pos().y()+pixmap().height()>250)
     {
         timer2->start(50);
@@ -44,6 +59,8 @@ void Enemy::move()
 
     return;
 }
+
+int Enemy::speed;
 
 void Enemy::movex()
 {
@@ -69,4 +86,9 @@ void Enemy::movex()
         }
     }
     return;
+}
+
+void Enemy::setSpeed(int value)
+{
+    speed = value;
 }
