@@ -14,7 +14,7 @@ Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(50);
+    timer->start(40);
 
     timer2 = new QTimer(this);
     connect(timer2, SIGNAL(timeout()), this, SLOT(movex()));

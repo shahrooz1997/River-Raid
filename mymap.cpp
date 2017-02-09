@@ -83,7 +83,7 @@ MyMap::MyMap(int help)
     set_smooth(a);
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(50);
+    timer->start(40);
     before_state = a;
     new_map = 0;
 }
@@ -125,7 +125,7 @@ Wall **MyMap::smoother_mid_s()
 
 void MyMap::start_timer()
 {
-    timer->start(50);
+    timer->start(40);
 }
 
 void MyMap::stop_timer()

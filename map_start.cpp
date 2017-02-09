@@ -14,7 +14,7 @@ Map_start::Map_start(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
-    timer->start(50);
+    timer->start(40);
 }
 
 Map_start::~Map_start()
@@ -56,7 +56,7 @@ Bridge *Map_start::bridge()
 
 void Map_start::start_timer()
 {
-    timer->start(50);
+    timer->start(40);
 }
 
 void Map_start::stop_timer()
