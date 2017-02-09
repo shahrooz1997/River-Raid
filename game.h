@@ -43,6 +43,7 @@ public:
     MyMap *active_map();
     MyMap *next_map();
     Map_start *start_map();
+    void make_next_map();
     void initial_map();
     QGraphicsTextItem *titleText();
     QPushButton *play() const;

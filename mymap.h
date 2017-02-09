@@ -15,7 +15,8 @@ public:
     Wall *mid();
     Wall **smoother_left();
     Wall **smoother_right();
-    Wall **smoother_mid();
+    Wall **smoother_mid_s();
+    Wall **smoother_mid_e();
     void start_timer();
     void stop_timer();
     ~MyMap();
@@ -33,10 +34,12 @@ private:
     Wall *_mid;
     Wall *_smoother_left[4];
     Wall *_smoother_right[4];
-    Wall *_smoother_mid[4];
+    Wall *_smoother_mid_s[4];
+    Wall *_smoother_mid_e[4];
     QTimer *timer;
 
     static int before_state;
+    bool new_map;
 
 };
 

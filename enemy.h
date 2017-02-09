@@ -23,6 +23,8 @@ protected:
     bool movingx;
     QTimer *timer;
     QTimer *timer2;
+    QString str1;//right pic
+    QString str2;//left pic
 };
 
 #endif // ENEMY_H
