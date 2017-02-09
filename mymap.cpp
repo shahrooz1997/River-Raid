@@ -5,6 +5,12 @@ extern Game *game;
 
 MyMap::MyMap(int help)
 {
+    call_from_initial = 0;
+    if(help == 3)//call from initial
+    {
+        help=1;
+        call_from_initial = 1;
+    }
     int a;
     if(help == 1)
     {
@@ -371,6 +377,11 @@ void MyMap::move()
             this->smoother_mid_s()[i]->setPos(this->smoother_mid_s()[i]->x(),this->smoother_mid_s()[i]->y()+5);
         if(smoother_mid_e()[i]!=0)
             this->smoother_mid_e()[i]->setPos(this->smoother_mid_e()[i]->x(),this->smoother_mid_e()[i]->y()+5);
+    }
+    if(this->left()->y()>-188 && this->call_from_initial == 1)
+    {
+        call_from_initial = 0;
+        game->stop_the_map();
     }
     if(this->left()->y()>-6 && new_map == 0)
     {

@@ -146,6 +146,11 @@ void Airplane::inc_fuel()
     return;
 }
 
+bool Airplane::getStart() const
+{
+    return start;
+}
+
 void Airplane::setStart(bool value)
 {
     start = value;

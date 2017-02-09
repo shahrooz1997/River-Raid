@@ -40,6 +40,7 @@ private:
 
     static int before_state;
     bool new_map;
+    bool call_from_initial;
 
 };
 

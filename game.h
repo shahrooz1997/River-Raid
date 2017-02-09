@@ -87,6 +87,7 @@ private:
     QTimer *timer_for_start;
     Map_start* _start_map;
     QGraphicsTextItem *_titleText;
+    int counter;
 };
 
 

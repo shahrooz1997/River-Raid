@@ -120,8 +120,8 @@ void Game::start_timer()
 void Game::stop_timer()
 {
     timer->stop();
-    map_timer->stop();
-    timer_for_start->stop();
+//    map_timer->stop();
+//    timer_for_start->stop();
     return;
 }
 
@@ -152,7 +152,7 @@ void Game::initial_map()
     scene()->addItem(start_map()->left());
     scene()->addItem(start_map()->right());
 
-    _active_map = new MyMap(1);
+    _active_map = new MyMap(3);
     scene()->addItem(active_map()->left());
     scene()->addItem(active_map()->right());
     if(active_map()->mid()!=0)
@@ -176,7 +176,6 @@ QGraphicsTextItem *Game::titleText()
 
 void Game::create_map()
 {
-    static int counter = 1;
     if(counter % 5 == 0 || counter % 5 == 4)
         _active_map = new MyMap(1);
     else
@@ -219,7 +218,7 @@ void Game::stop_the_map()
 {
     this->active_map()->stop_timer();
     this->start_map()->stop_timer();
-    timer_for_start->stop();
+//    timer_for_start->stop();
     this->_airplane->setFlag(QGraphicsItem::ItemIsFocusable);
     this->_airplane->setFocus();
 }
@@ -266,11 +265,23 @@ void Game::dec_health()
 void Game::restart()
 {
         _airplane->setPos(380,550-115);
-        _airplane->re_fuel();        
+        _airplane->re_fuel();
+//        delete active_map();
+//        stop_the_map();
+        stop_timer();
+        this->active_map()->stop_timer();
+        _airplane->getTimer()->stop();
+        _airplane->getTimer2()->stop();
+        this->_foot->setFlag(QGraphicsItem::ItemIsFocusable);
+        this->_foot->setFocus();
+        _airplane->setStart(1);
+        _airplane->setPixmap(QPixmap(":/images/ap.png"));
+        initial_map();
 }
 
 void Game::start()
 {
+    counter = 1;
 //    _scene->clear();
    QList<QGraphicsItem*> mitem = _scene->items();
    foreach (QGraphicsItem* it, mitem) {
@@ -306,9 +317,9 @@ void Game::start()
 
     this->initial_map();
 
-    timer_for_start = new QTimer();
-    connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
-    timer_for_start->start(5050);
+//    timer_for_start = new QTimer();
+//    connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
+//    timer_for_start->start(5050);
 
 }
 
