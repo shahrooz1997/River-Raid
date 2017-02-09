@@ -5,7 +5,12 @@ extern Game *game;
 
 MyMap::MyMap(int help)
 {
-    speed = 5;
+    call_from_initial = 0;
+    if(help == 3)//call from initial
+    {
+        help=1;
+        call_from_initial = 1;
+    }
     int a;
     if(help == 1)
     {
@@ -78,12 +83,10 @@ MyMap::MyMap(int help)
     set_smooth(a);
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT(move()));
-    timer->start(50);
+    timer->start(40);
     before_state = a;
     new_map = 0;
 }
-
-int MyMap::speed;
 
 Wall *MyMap::right()
 {
@@ -122,7 +125,7 @@ Wall **MyMap::smoother_mid_s()
 
 void MyMap::start_timer()
 {
-    timer->start(50);
+    timer->start(40);
 }
 
 void MyMap::stop_timer()
@@ -359,21 +362,26 @@ void MyMap::set_smooth(int now)
 void MyMap::move()
 {
     if(left()!=0)
-        this->left()->setPos(this->left()->x(),this->left()->y()+speed);
+        this->left()->setPos(this->left()->x(),this->left()->y()+5);
     if(right()!=0)
-        this->right()->setPos(this->right()->x(),this->right()->y()+speed);
+        this->right()->setPos(this->right()->x(),this->right()->y()+5);
     if(mid()!=0)
-        this->mid()->setPos(this->mid()->x(), this->mid()->y()+speed);
+        this->mid()->setPos(this->mid()->x(), this->mid()->y()+5);
     for(int i=0; i<4; i++)
     {
         if(smoother_left()[i]!=0)
-            this->smoother_left()[i]->setPos(this->smoother_left()[i]->x(),this->smoother_left()[i]->y()+speed);
+            this->smoother_left()[i]->setPos(this->smoother_left()[i]->x(),this->smoother_left()[i]->y()+5);
         if(smoother_right()[i]!=0)
-            this->smoother_right()[i]->setPos(this->smoother_right()[i]->x(),this->smoother_right()[i]->y()+speed);
+            this->smoother_right()[i]->setPos(this->smoother_right()[i]->x(),this->smoother_right()[i]->y()+5);
         if(smoother_mid_s()[i]!=0)
-            this->smoother_mid_s()[i]->setPos(this->smoother_mid_s()[i]->x(),this->smoother_mid_s()[i]->y()+speed);
+            this->smoother_mid_s()[i]->setPos(this->smoother_mid_s()[i]->x(),this->smoother_mid_s()[i]->y()+5);
         if(smoother_mid_e()[i]!=0)
-            this->smoother_mid_e()[i]->setPos(this->smoother_mid_e()[i]->x(),this->smoother_mid_e()[i]->y()+speed);
+            this->smoother_mid_e()[i]->setPos(this->smoother_mid_e()[i]->x(),this->smoother_mid_e()[i]->y()+5);
+    }
+    if(this->left()->y()>-188 && this->call_from_initial == 1)
+    {
+        call_from_initial = 0;
+        game->stop_the_map();
     }
     if(this->left()->y()>-6 && new_map == 0)
     {
@@ -385,11 +393,6 @@ void MyMap::move()
         delete this;
     }
     return;
-}
-
-void MyMap::setSpeed(int value)
-{
-    speed = value;
 }
 
 int MyMap::before_state;

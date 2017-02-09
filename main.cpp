@@ -1,9 +1,9 @@
 #include <QApplication>
 #include "game.h"
 
-
 Game *game;
 Game *game1;
+
 
 int main(int argc, char *argv[])
 {

@@ -21,6 +21,8 @@ public:
 
     void setStart(bool value);
 
+    bool getStart() const;
+
 public slots:
     void collision();
     void dec_fuel();

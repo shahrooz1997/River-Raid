@@ -25,8 +25,6 @@ public:
 
     void set_smooth(int now);
 
-    void setSpeed(int value);
-
 public slots:
     void move();
 
@@ -39,9 +37,10 @@ private:
     Wall *_smoother_mid_s[4];
     Wall *_smoother_mid_e[4];
     QTimer *timer;
-    static int speed;
+
     static int before_state;
     bool new_map;
+    bool call_from_initial;
 
 };
 

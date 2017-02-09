@@ -14,6 +14,11 @@ Footer::Footer()
     _slider->setZValue(11);
 }
 
+void Footer::keyPressEvent(QKeyEvent *event)
+{
+    return;
+}
+
 QGraphicsPixmapItem *Footer::slider()
 {
     return _slider;

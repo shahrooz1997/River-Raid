@@ -60,8 +60,6 @@ public:
 
     QPushButton *getCancelg() const;
 
-    void setSpeed(int value);
-
 public slots:
     void make_enemy();
     void create_map();
@@ -69,7 +67,6 @@ public slots:
     void start();
 
 private:
-    int speed;
     Airplane *_airplane;
     QGraphicsScene *_scene;
 //    QMediaPlayer *bgsound;
@@ -90,6 +87,7 @@ private:
     QTimer *timer_for_start;
     Map_start* _start_map;
     QGraphicsTextItem *_titleText;
+    int counter;
 };
 
 

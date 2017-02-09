@@ -3,6 +3,6 @@
 
 Fuel_depot::Fuel_depot()
 {
-    setPixmap(QPixmap(":/images/fuel.png"));
+    QPixmap *pix =new QPixmap(":/images/fuel.png");
     xspeed = 0;
 }

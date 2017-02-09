@@ -2,6 +2,7 @@
 
 Helicopter::Helicopter()
 {
+    QPixmap *pix =new QPixmap(":/images/fuel.png");
     if(direction == 1)
     {
         setPixmap(QPixmap(":/images/hc-right.png"));
