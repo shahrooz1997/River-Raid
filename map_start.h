@@ -9,7 +9,7 @@
 
 class Map_start: Map{
 public:
-    Map_start(bool start, QGraphicsItem *parent = nullptr);
+    Map_start(bool start, QGraphicsItem *parent = 0);
     ~Map_start();
     int get_width();
 public slots:
@@ -18,7 +18,6 @@ private:
     QTimer *timer;
     Road *left;
     Road *right;
-
 };
 
 #endif // MAP_START_H

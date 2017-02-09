@@ -4,7 +4,7 @@
 #include "game.h"
 #include <QDebug>
 #include <typeinfo>
-#include "enemy.h"
+#include"enemy.h"
 extern Game *game;
 
 Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
@@ -35,7 +35,7 @@ Bullet *Bullet::get_instance()
 
 Bullet::~Bullet()
 {
-    instance = nullptr;
+    instance = 0;
     delete timer;
 //    delete bulletsound;
 }

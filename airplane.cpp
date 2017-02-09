@@ -73,17 +73,17 @@ void Airplane::collision()
     // if one of the colliding items is an Enemy, destroy both the bullet and the enemy
     for (int i = 0, n = colliding_items.size(); i < n; ++i)
     {
-        if(typeid(*(colliding_items[i])) != typeid(Fuel_depot) && typeid(*(colliding_items[i])) != typeid(Bullet))
+        if(typeid(*(colliding_items[i])) != typeid(Fuel_depot) && typeid(*(colliding_items[i])) != typeid(Bullet) && typeid(*(colliding_items[i])) != typeid(QGraphicsRectItem))
         {
-            //decrease health;
-
+//            decrease health;
+            game->dec_health();
             // remove them from the scene (still on the heap)
             scene()->removeItem(colliding_items[i]);
-            scene()->removeItem(this);
+//            scene()->removeItem(this);
 
             // delete them from the heap to save memory
             delete colliding_items[i];
-            delete this;
+//            delete this;
             return;
         }
         else
@@ -99,6 +99,7 @@ void Airplane::dec_fuel()
     if(fuel<0)
     {
         //end the game
+        game->dec_health();
 //        qDebug() << "Game Ended, becuase fuel finished!\n";
         return;
     }
@@ -111,14 +112,28 @@ void Airplane::dec_fuel()
 
 void Airplane::inc_fuel()
 {
-    if(fuel > 100)
-        return;
-    fuel+=5;
+    fuel+=1;
     if(fuel > 100)
         fuel=100;
 //    qDebug() << "fuel inc 5 unit\n";
     game->foot()->slider()->setPos(290+2*fuel,game->foot()->slider()->pos().y());
     return;
+}
+
+void Airplane::re_fuel()
+{
+    fuel = 100;
+    game->foot()->slider()->setPos(490,533);
+}
+
+QTimer *Airplane::getTimer2() const
+{
+    return timer2;
+}
+
+QTimer *Airplane::getTimer() const
+{
+    return timer;
 }
 
 

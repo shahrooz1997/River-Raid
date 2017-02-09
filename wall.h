@@ -5,7 +5,7 @@
 
 class Wall: public Map{
 public:
-    Wall(QGraphicsItem *parent = nullptr);
+    Wall(QGraphicsItem *parent = 0);
 private:
 };
 

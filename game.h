@@ -32,10 +32,12 @@ public:
     ~Game();
     void game_over();
     void create_map();
-
+    void dispalyMenu();
+    void dec_health();
+    void restart();
 public slots:
     void make_enemy();
-
+    void start();
 private:
     Airplane *_airplane;
     QGraphicsScene *_scene;

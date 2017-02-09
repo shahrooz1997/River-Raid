@@ -10,7 +10,7 @@ class Enemy : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    Enemy(QGraphicsItem *parent=nullptr);
+    Enemy(QGraphicsItem *parent=0);
     ~Enemy();
 
 public slots:

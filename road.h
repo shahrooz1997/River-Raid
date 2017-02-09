@@ -11,7 +11,7 @@
 
 class Road: public QObject, public QGraphicsPixmapItem{
 public:
-    Road(QGraphicsItem *parent=nullptr);
+    Road(QGraphicsItem *parent=0);
     int get_width();
 };
 

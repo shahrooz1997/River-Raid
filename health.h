@@ -5,7 +5,7 @@
 
 class Health: public QGraphicsTextItem{
 public:
-    Health(QGraphicsItem *parent=nullptr);
+    Health(QGraphicsItem *parent=0);
     int get_health();
     void dec_health();
 private:
