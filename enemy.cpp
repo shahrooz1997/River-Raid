@@ -1,6 +1,7 @@
 #include "enemy.h"
 #include "game.h"
-
+#include <QList>
+#include <typeinfo>
 
 extern Game *game;
 
@@ -9,7 +10,7 @@ Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     /* a random number */
     setPos(qrand()%800,-20);
 
-    direction = qrand()%2;
+    direction = qrand()%2;//1: right     0:left
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -47,14 +48,25 @@ void Enemy::move()
 void Enemy::movex()
 {
     setPos(x()+xspeed, y());
-    if(pos().x()<0) {
-        xspeed *= 1;
-        return;
-    }
-    if(pos().x()+pixmap().width()>800) {
-        xspeed *= 1;
-        return;
-    }
 
+    QList<QGraphicsItem *> colliding_items = collidingItems();
+
+    for (int i = 0, n = colliding_items.size(); i < n; ++i)
+    {
+        if(typeid(*(colliding_items[i])) == typeid(Wall) && typeid(*this) != typeid(Jet))
+        {
+            xspeed *= -1;
+            if(direction == 1)
+            {
+                setPixmap(QPixmap(str2));
+                direction = 0;
+            }
+            else
+            {
+                setPixmap(QPixmap(str1));
+                direction = 1;
+            }
+        }
+    }
     return;
 }

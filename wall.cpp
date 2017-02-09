@@ -9,6 +9,7 @@ Wall::Wall(int width,int height, QGraphicsItem *parent): QGraphicsRectItem(paren
     brush->setColor(*(new QColor(108,152,80)));
     brush->setStyle(Qt::SolidPattern);
     setBrush(*brush);
+    setZValue(7);
 }
 
 Wall::~Wall()

@@ -112,7 +112,7 @@ void Game::game_over()
 void Game::start_timer()
 {
     timer->start(2000);
-    map_timer->start(6760);
+//    map_timer->start(6760);
 }
 
 MyMap *Game::active_map()
@@ -128,6 +128,12 @@ MyMap *Game::next_map()
 Map_start *Game::start_map()
 {
     return _start_map;
+}
+
+void Game::make_next_map()
+{
+    _next_map = new MyMap(1);
+    return;
 }
 
 void Game::initial_map()
@@ -180,14 +186,21 @@ void Game::create_map()
                 scene()->addItem(active_map()->smoother_left()[i]);
             if(active_map()->smoother_right()[i]!=0)
                 scene()->addItem(active_map()->smoother_right()[i]);
-            if(active_map()->smoother_mid()[i]!=0)
-                scene()->addItem(active_map()->smoother_mid()[i]);
+//            if(active_map()->smoother_mid()[i]!=0)
+//                scene()->addItem(active_map()->smoother_mid()[i]);
         }
     }
     scene()->addItem(active_map()->left());
     scene()->addItem(active_map()->right());
     if(active_map()->mid()!=0)
         scene()->addItem(active_map()->mid());
+    for(int i=0;i<4;i++)
+    {
+        if(active_map()->smoother_mid_s()[i] != 0)
+            scene()->addItem(active_map()->smoother_mid_s()[i]);
+        if(active_map()->smoother_mid_e()[i] != 0)
+            scene()->addItem(active_map()->smoother_mid_e()[i]);
+    }
 
     counter++;
 }
@@ -197,6 +210,8 @@ void Game::stop_the_map()
     this->active_map()->stop_timer();
     this->start_map()->stop_timer();
     timer_for_start->stop();
+    this->_airplane->setFlag(QGraphicsItem::ItemIsFocusable);
+    this->_airplane->setFocus();
 }
 
 void Game::dispalyMenu() {
@@ -254,8 +269,8 @@ void Game::start()
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
     this->_airplane = new Airplane();
     //must change and enhance
-    this->_airplane->setFlag(QGraphicsItem::ItemIsFocusable);
-    this->_airplane->setFocus();
+//    this->_airplane->setFlag(QGraphicsItem::ItemIsFocusable);
+//    this->_airplane->setFocus();
     this->_airplane->setZValue(10);
     this->scene()->addItem(this->_airplane);
 
