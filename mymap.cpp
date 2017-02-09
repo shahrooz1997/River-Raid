@@ -105,7 +105,8 @@ MyMap::~MyMap()
         if(_smoother_left[i]!=0)
             delete _smoother_left[i];
         if(_smoother_right[i]!=0)
-            delete _smoother_right[i];
+            delete
+            _smoother_right[i];
         if(_smoother_mid[i]!=0)
             delete _smoother_mid[i];
     }

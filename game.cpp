@@ -68,7 +68,9 @@ Game::~Game()
 
 void Game::game_over()
 {
-    timer->stop();
+    active_map()->stop_timer();
+    stop_timer();
+//    timer->stop();
     _airplane->getTimer()->stop();
     _airplane->getTimer2()->stop();
     QList<QGraphicsItem*> mitem = _scene->items();
@@ -113,6 +115,14 @@ void Game::start_timer()
 {
     timer->start(2000);
     map_timer->start(6760);
+}
+
+void Game::stop_timer()
+{
+    timer->stop();
+    map_timer->stop();
+    timer_for_start->stop();
+    return;
 }
 
 MyMap *Game::active_map()
@@ -258,7 +268,7 @@ void Game::start()
     this->_airplane->setFocus();
     this->_airplane->setZValue(10);
     this->scene()->addItem(this->_airplane);
-
+    this->_airplane->setStart(1);
 //    this->bgsound = new QMediaPlayer();
 //    this->bgsound->setMedia(QUrl("qrc:/sounds/bg.mp3"));
 //    this->bgsound->play();

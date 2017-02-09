@@ -16,7 +16,7 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     // set graphic
     setPixmap(QPixmap(":/images/ap.png"));
     setPos(380,550-115);
-
+    start=1;
 //    this->tr;
 //    QPixmap a(44,39);
 //    a.fill(0,2,2);
@@ -25,7 +25,7 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(collision()));
-//    timer->start(50);
+    timer->start(50);
 
     fuel=100;
     timer2 = new QTimer(this);
@@ -35,8 +35,7 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 }
 
 void Airplane::keyPressEvent(QKeyEvent *event){
-    //start game by space
-    static bool start=1;
+    //start game by space    
 
     // move the player left and right
     if (event->key() == Qt::Key_Left){
@@ -145,6 +144,11 @@ void Airplane::inc_fuel()
 //    qDebug() << "fuel inc 5 unit\n";
     game->foot()->slider()->setPos(290+2*fuel,game->foot()->slider()->pos().y());
     return;
+}
+
+void Airplane::setStart(bool value)
+{
+    start = value;
 }
 
 void Airplane::re_fuel()
