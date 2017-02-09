@@ -46,6 +46,20 @@ public:
     void make_next_map();
     void initial_map();
     QGraphicsTextItem *titleText();
+    QPushButton *play() const;
+
+    QPushButton *cancel() const;
+
+    QGraphicsRectItem *getPanel1() const;
+
+    QGraphicsRectItem *getPanel2() const;
+
+    QGraphicsTextItem *getGameOvr() const;
+
+    QPushButton *getPlayg() const;
+
+    QPushButton *getCancelg() const;
+
 public slots:
     void make_enemy();
     void create_map();
@@ -59,7 +73,14 @@ private:
     Footer *_foot;
     QTimer *timer;
     Score *_score;
+    QGraphicsRectItem* _panel2;
     Health *_health;
+    QPushButton* _play;
+    QPushButton *_cancelg;
+    QGraphicsRectItem *_panel1;
+    QGraphicsTextItem* _gameOvr;
+    QPushButton *_playg;
+    QPushButton* _cancel;
     QTimer *map_timer;
     MyMap *_active_map;
     MyMap *_next_map;

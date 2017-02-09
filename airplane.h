@@ -19,6 +19,8 @@ public:
     QTimer *getTimer() const;
     QTimer *getTimer2() const;
 
+    void setStart(bool value);
+
 public slots:
     void collision();
     void dec_fuel();
@@ -28,6 +30,7 @@ private:
     QTimer *timer2;
     int fuel;
     void inc_fuel();
+    bool start;
 };
 
 

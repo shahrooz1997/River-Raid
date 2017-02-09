@@ -314,7 +314,6 @@ void MyMap::set_smooth(int now)
 //            _smoother_mid[3-i]->setPos(345-i*11,-23-19*i);
         }
     }
-    /////
     else if(before_state == 3 && now == 0)
     {
         for(int i = 0; i < 4; i++)
