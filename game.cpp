@@ -79,34 +79,34 @@ void Game::game_over()
         it->setEnabled(false);
     }
 
-    QGraphicsRectItem* panel1 = new QGraphicsRectItem(0,0,800,600);
-    panel1->setBrush(QBrush(QImage(":/images/menu.png")));
-    panel1->setOpacity(0.15);
-    this->scene()->addItem(panel1);
+    _panel1 = new QGraphicsRectItem(0,0,800,600);
+    _panel1->setBrush(QBrush(QImage(":/images/menu.png")));
+    _panel1->setOpacity(0.15);
+    this->scene()->addItem(_panel1);
 
-    QGraphicsRectItem* panel2 = new QGraphicsRectItem(300,200,200,200);
+    _panel2 = new QGraphicsRectItem(300,200,200,200);
     QBrush brush;
     brush.setStyle(Qt::SolidPattern);
     brush.setColor(Qt::darkCyan);
-    panel2->setBrush(brush);
-    panel2->setOpacity(0.75);
-    this->scene()->addItem(panel2);
+    _panel2->setBrush(brush);
+    _panel2->setOpacity(0.75);
+    this->scene()->addItem(_panel2);
 
-    QGraphicsTextItem *gameOvr =new QGraphicsTextItem(QString("GameOver"));
+    _gameOvr =new QGraphicsTextItem(QString("GameOver"));
     QFont titleFont("comic sans", 15);
-    gameOvr->setFont(titleFont);
-    int tXpos = rect().width()/2 - gameOvr->boundingRect().width()/2;
+    _gameOvr->setFont(titleFont);
+    int tXpos = rect().width()/2 - _gameOvr->boundingRect().width()/2;
     int tYpos = 195;
-    gameOvr->setPos(tXpos,tYpos);
-    scene()->addItem(gameOvr);
-    QPushButton *play = new QPushButton(QString("Play"));
-    play->setGeometry(rect().width()/2 - 50,225,100,60);
-    scene()->addWidget(play);
-    connect(play,SIGNAL(clicked()),this,SLOT(start()));
-    QPushButton *cancel = new QPushButton(QString("Quit"));
-    cancel->setGeometry(rect().width()/2 - 50,315,100,60);
-    scene()->addWidget(cancel);
-    connect(cancel,SIGNAL(clicked()),this,SLOT(close()));
+    _gameOvr->setPos(tXpos,tYpos);
+    scene()->addItem(_gameOvr);
+    _playg = new QPushButton(QString("Play"));
+    _playg->setGeometry(rect().width()/2 - 50,225,100,60);
+    scene()->addWidget(_playg);
+    connect(_playg,SIGNAL(clicked()),this,SLOT(start()));
+    _cancelg = new QPushButton(QString("Quit"));
+    _cancelg->setGeometry(rect().width()/2 - 50,315,100,60);
+    scene()->addWidget(_cancelg);
+    connect(_cancelg,SIGNAL(clicked()),this,SLOT(close()));
 
     return;
 }
@@ -218,14 +218,14 @@ void Game::dispalyMenu() {
     int tYpos = 150;
     _titleText->setPos(tXpos,tYpos);
     scene()->addItem(_titleText);
-    QPushButton *play = new QPushButton(QString("Play"));
-    play->setGeometry(rect().width()/2 - 50,250,100,60);
-    scene()->addWidget(play);
-    connect(play,SIGNAL(clicked()),this,SLOT(start()));
-    QPushButton *cancel = new QPushButton(QString("Quit"));
-    cancel->setGeometry(rect().width()/2 - 50,350,100,60);
-    scene()->addWidget(cancel);
-    connect(cancel,SIGNAL(clicked()),this,SLOT(close()));
+    _play = new QPushButton(QString("Play"));
+    _play->setGeometry(rect().width()/2 - 50,250,100,60);
+    scene()->addWidget(_play);
+    connect(_play,SIGNAL(clicked()),this,SLOT(start()));
+    _cancel = new QPushButton(QString("Quit"));
+    _cancel->setGeometry(rect().width()/2 - 50,350,100,60);
+    scene()->addWidget(_cancel);
+    connect(_cancel,SIGNAL(clicked()),this,SLOT(close()));
 }
 
 void Game::dec_health()
@@ -295,6 +295,41 @@ void Game::start()
     connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
     timer_for_start->start(5050);
 
+}
+
+QPushButton *Game::getCancelg() const
+{
+    return _cancelg;
+}
+
+QPushButton *Game::getPlayg() const
+{
+    return _playg;
+}
+
+QGraphicsTextItem *Game::getGameOvr() const
+{
+    return _gameOvr;
+}
+
+QGraphicsRectItem *Game::getPanel2() const
+{
+    return _panel2;
+}
+
+QGraphicsRectItem *Game::getPanel1() const
+{
+    return _panel1;
+}
+
+QPushButton *Game::cancel() const
+{
+    return _cancel;
+}
+
+QPushButton *Game::play() const
+{
+    return _play;
 }
 
 
