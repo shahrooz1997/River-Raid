@@ -234,7 +234,7 @@ void Game::dec_health()
     QList<QGraphicsItem*> mitem = _scene->items();
     //health,score,foot,aiplane
     for(int i =0 ;i<mitem.size();i++) {
-        if((typeid(*mitem[i]) != typeid(Airplane)) && (typeid(*mitem[i]) != typeid(Score)) && (typeid(*mitem[i]) != typeid(Health)) && (typeid(*mitem[i]) != typeid(Footer)) &&  (typeid(*mitem[i]) != typeid(QGraphicsPixmapItem)))
+        if((typeid(*mitem[i]) != typeid(Airplane)) && (typeid(*mitem[i]) != typeid(Score)) && (typeid(*mitem[i]) != typeid(Health)) && (typeid(*mitem[i]) != typeid(Footer)))
         {
             this->scene()->removeItem(mitem[i]);
         }
@@ -251,7 +251,7 @@ void Game::dec_health()
 void Game::restart()
 {
         _airplane->setPos(380,550-115);
-        _airplane->re_fuel();        
+        _airplane->re_fuel();                
 }
 
 void Game::start()
@@ -259,7 +259,7 @@ void Game::start()
 //    _scene->clear();
    QList<QGraphicsItem*> mitem = _scene->items();
    foreach (QGraphicsItem* it, mitem) {
-       _scene->removeItem(it);       
+       _scene->removeItem(it);
    }      
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
     this->_airplane = new Airplane();
@@ -294,7 +294,6 @@ void Game::start()
     timer_for_start = new QTimer();
     connect(timer_for_start, SIGNAL(timeout()),this, SLOT(stop_the_map()));
     timer_for_start->start(5050);
-
 }
 
 QPushButton *Game::getCancelg() const
