@@ -4,7 +4,6 @@ Boat::Boat()
 {
     str1 = QString(":/images/boat_right.png");
     str2 = QString(":/images/boat_left.png");
-    QPixmap *pix =new QPixmap(":/images/boat_right.png");
 //    if((pix->width()+this->x()>600) || (pix->width()+this->x()>300)) {
 //        setPos(x()-100,y());
 //    }
@@ -21,4 +20,15 @@ Boat::Boat()
         setPixmap(QPixmap(":/images/boat_left.png"));
         xspeed = -2;
     }
+
+    int xPos = qrand()%20;
+    int yPos = -20;
+
+    int f = qrand()%2;
+    if(f)
+        xPos += 200;
+    else
+        xPos += 500;
+    setPos(xPos,yPos);
+
 }

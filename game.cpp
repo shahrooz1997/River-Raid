@@ -3,6 +3,7 @@
 #include "enemy.h"
 #include "jet.h"
 #include "map_start.h"
+#include "house.h"
 #include <QtCore>
 #include <QtGui>
 #include <typeinfo>
@@ -307,6 +308,7 @@ void Game::start()
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(make_enemy()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(make_house()));
 //    timer->start(2000);
 
     _score = new Score();
@@ -364,12 +366,20 @@ void Game::make_enemy()
     int a=((int)qrand())%4;
     if(a == 0)
         scene()->addItem(new Boat());
-    else if(a == 1)
+    else if(a == 1) {
         scene()->addItem(new Fuel_depot());
+        qDebug() << "fuel deput added";
+    }
     else if(a == 2)
         scene()->addItem(new Jet());
     else if(a == 3)
         scene()->addItem(new Helicopter());
-
     return;
+}
+
+void Game::make_house()
+{
+    int a=((int)qrand())%4;
+    if(a !=0 )
+        scene()->addItem(new House());
 }

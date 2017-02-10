@@ -28,7 +28,8 @@ SOURCES += main.cpp \
     bridge.cpp \
     wall.cpp \
     mymap.cpp \
-    bullet.cpp
+    bullet.cpp \
+    house.cpp
 
 HEADERS  += \
     airplane.h \
@@ -48,7 +49,9 @@ HEADERS  += \
     bridge.h \
     imap.h \
     wall.h \
-    mymap.h
+    mymap.h \
+    house.h
+
 
 RESOURCES += \
     res.qrc
