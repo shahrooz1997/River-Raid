@@ -29,7 +29,9 @@ SOURCES += main.cpp \
     wall.cpp \
     mymap.cpp \
     bullet.cpp \
-    house.cpp
+    house.cpp \
+    tplanemove.cpp \
+    balloon.cpp
 
 HEADERS  += \
     airplane.h \
@@ -50,8 +52,12 @@ HEADERS  += \
     imap.h \
     wall.h \
     mymap.h \
-    house.h
+    house.h \
+    tplanemove.h \
+    balloon.h
 
 
 RESOURCES += \
     res.qrc
+
+DISTFILES +=

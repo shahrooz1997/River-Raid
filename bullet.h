@@ -16,6 +16,7 @@ class Bullet: public QObject,public QGraphicsPixmapItem {
 public:
     static Bullet *get_instance();
     ~Bullet();
+    void run();
 public slots:
     void move();
 private:

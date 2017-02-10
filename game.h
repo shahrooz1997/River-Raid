@@ -15,6 +15,7 @@
 #include "score.h"
 #include "health.h"
 #include "jet.h"
+#include "balloon.h"
 #include "helicopter.h"
 #include "fuel_depot.h"
 #include "map_start.h"

@@ -6,7 +6,7 @@
 #include <QGraphicsItem>
 #include <QTimer>
 #include <QThread>
-
+#include <tplanemove.h>
 
 class Airplane:public QThread, public QGraphicsPixmapItem{
     Q_OBJECT
@@ -28,6 +28,8 @@ public slots:
     void dec_fuel();
     void re_fuel();
 private:
+    TplaneMove *_right;
+    TplaneMove* _left;
     QTimer *timer;
     QTimer *timer2;
     int fuel;

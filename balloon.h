@@ -1,8 +1,9 @@
 #ifndef BALLOON_H
 #define BALLOON_H
 
+#include "jet.h"
 
-class Balloon
+class Balloon : public Jet
 {
 public:
     Balloon();

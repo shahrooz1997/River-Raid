@@ -19,6 +19,7 @@
         <file>hc-right2.png</file>
         <file>menu.png</file>
         <file>house.png</file>
+        <file>balloon.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bg.mp3</file>

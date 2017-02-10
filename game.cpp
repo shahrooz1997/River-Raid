@@ -2,6 +2,7 @@
 #include <QDebug>
 #include "enemy.h"
 #include "jet.h"
+#include "balloon.h"
 #include "map_start.h"
 #include "house.h"
 #include <QtCore>
@@ -374,6 +375,22 @@ void Game::make_enemy()
         scene()->addItem(new Jet());
     else if(a == 3)
         scene()->addItem(new Helicopter());
+    if(counter >= 15) {
+        int a=((int)qrand())%5;
+        if(a == 0)
+            scene()->addItem(new Boat());
+        else if(a == 1) {
+            scene()->addItem(new Fuel_depot());
+            qDebug() << "fuel deput added";
+        }
+        else if(a == 2)
+            scene()->addItem(new Jet());
+        else if(a == 3)
+            scene()->addItem(new Helicopter());
+        else if(a == 4)
+            scene()->addItem(new Balloon());
+    }
+
     return;
 }
 

@@ -22,7 +22,8 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 //    a.fill(0,2,2);
 //    setPixmap(a);
 //    setShapeMode(QGraphicsPixmapItem::MaskShape);
-
+    _right = new TplaneMove(+20,this);
+    _left= new TplaneMove(-20,this);
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(collision()));
     timer->start(50);
@@ -40,18 +41,16 @@ void Airplane::keyPressEvent(QKeyEvent *event){
     // move the player left and right
     if (event->key() == Qt::Key_Left){
         setPixmap(QPixmap(":/images/ap_left.png"));
-        if (pos().x() > 0)
-        setPos(x()-20,y());
+        _left->run();
     }
     else if (event->key() == Qt::Key_Right){
         setPixmap(QPixmap(":/images/ap-right.png"));
-        if (pos().x() + pixmap().width() < 800)
-        setPos(x()+20,y());
+        _right->run();
     }
     // shoot with the spacebar
-    else if (event->key() == Qt::Key_Space){
-        if(start == 1)
-        {
+    else if (event->key() == Qt::Key_Space)
+    {
+        if(start == 1){
             start = 0;
             strat_timer();
             game->start_timer();
@@ -171,5 +170,3 @@ QTimer *Airplane::getTimer() const
 {
     return timer;
 }
-
-
