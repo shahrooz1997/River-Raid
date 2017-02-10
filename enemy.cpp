@@ -4,12 +4,20 @@
 #include <typeinfo>
 
 extern Game *game;
+extern int yspeed;
 
 Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     /* a random number */
-    setPos(qrand()%800,-20);
+    int xPos = qrand()%50;
+    int yPos = -80;
 
+    int f = qrand()%2;
+    if(f)
+        xPos += 200;
+    else
+        xPos += 500;
+    setPos(xPos,yPos);
     direction = qrand()%2;//1: right     0:left
 
     timer = new QTimer(this);
@@ -31,7 +39,7 @@ Enemy::~Enemy()
 
 void Enemy::move()
 {
-    setPos(x(),y()+5);
+    setPos(x(),y()+yspeed);
     if(movingx == 0 && pos().y()+pixmap().height()>250)
     {
         timer2->start(50);
@@ -41,7 +49,6 @@ void Enemy::move()
         game->scene()->removeItem(this);
         delete this;
     }
-
     return;
 }
 

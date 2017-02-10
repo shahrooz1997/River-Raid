@@ -18,6 +18,7 @@
         <file>hc-left2.png</file>
         <file>hc-right2.png</file>
         <file>menu.png</file>
+        <file>house.png</file>
     </qresource>
     <qresource prefix="/sounds">
         <file>bg.mp3</file>

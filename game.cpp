@@ -3,12 +3,19 @@
 #include "enemy.h"
 #include "jet.h"
 #include "map_start.h"
+#include "house.h"
 #include <QtCore>
 #include <QtGui>
 #include <typeinfo>
 
+extern int yspeed;
+extern int max_speed;
+
+
 Game::Game()
 {
+    //intialize the speed
+    yspeed = 5;
     // create the scene
     _scene = new QGraphicsScene();
     _scene->setSceneRect(0,0,800,600);
@@ -19,6 +26,8 @@ Game::Game()
     this->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     this->setFixedSize(800,600);
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
+
+    _foot = new Footer();
 
     //you should change the location of these code to start()
     map_timer = new QTimer();
@@ -64,6 +73,21 @@ Game::~Game()
 //    delete bgsound;
     delete _foot;
     delete timer;
+    delete _panel1;
+    delete _panel2;
+    delete _gameOvr;
+    delete _health;
+    delete _play;
+    delete _score;
+    delete _cancelg;
+    delete _playg;
+    delete _cancel;
+    delete map_timer;
+    delete _active_map;
+    delete _next_map;
+    delete timer_for_start;
+    delete _start_map;
+    delete _titleText;
 }
 
 void Game::game_over()
@@ -102,6 +126,9 @@ void Game::game_over()
     _playg = new QPushButton(QString("Play"));
     _playg->setGeometry(rect().width()/2 - 50,225,100,60);
     scene()->addWidget(_playg);
+    delete _health;
+    delete _score;
+//    delete _foot;
     connect(_playg,SIGNAL(clicked()),this,SLOT(start()));
     _cancelg = new QPushButton(QString("Quit"));
     _cancelg->setGeometry(rect().width()/2 - 50,315,100,60);
@@ -300,13 +327,15 @@ void Game::start()
 //    this->bgsound->play();
 
     //set foot
-    _foot = new Footer();
+//    _foot = new Footer();
     this->scene()->addItem(this->_foot);
     this->scene()->addItem(this->_foot->slider());
     this->_foot->setZValue(10);
+    this->_foot->set_slider_pos();
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(make_enemy()));
+    connect(timer, SIGNAL(timeout()), this, SLOT(make_house()));
 //    timer->start(2000);
 
     _score = new Score();
@@ -364,12 +393,20 @@ void Game::make_enemy()
     int a=((int)qrand())%4;
     if(a == 0)
         scene()->addItem(new Boat());
-    else if(a == 1)
+    else if(a == 1) {
         scene()->addItem(new Fuel_depot());
+        qDebug() << "fuel deput added";
+    }
     else if(a == 2)
         scene()->addItem(new Jet());
     else if(a == 3)
         scene()->addItem(new Helicopter());
-
     return;
+}
+
+void Game::make_house()
+{
+    int a=((int)qrand())%4;
+    if(a !=0 )
+        scene()->addItem(new House());
 }

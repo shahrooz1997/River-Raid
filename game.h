@@ -62,6 +62,7 @@ public:
 
 public slots:
     void make_enemy();
+    void make_house();
     void create_map();
     void stop_the_map();
     void start();

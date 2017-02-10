@@ -2,6 +2,7 @@
 #include "game.h"
 
 extern Game *game;
+extern int yspeed;
 
 MyMap::MyMap(int help)
 {
@@ -362,21 +363,21 @@ void MyMap::set_smooth(int now)
 void MyMap::move()
 {
     if(left()!=0)
-        this->left()->setPos(this->left()->x(),this->left()->y()+5);
+        this->left()->setPos(this->left()->x(),this->left()->y()+yspeed);
     if(right()!=0)
-        this->right()->setPos(this->right()->x(),this->right()->y()+5);
+        this->right()->setPos(this->right()->x(),this->right()->y()+yspeed);
     if(mid()!=0)
-        this->mid()->setPos(this->mid()->x(), this->mid()->y()+5);
+        this->mid()->setPos(this->mid()->x(), this->mid()->y()+yspeed);
     for(int i=0; i<4; i++)
     {
         if(smoother_left()[i]!=0)
-            this->smoother_left()[i]->setPos(this->smoother_left()[i]->x(),this->smoother_left()[i]->y()+5);
+            this->smoother_left()[i]->setPos(this->smoother_left()[i]->x(),this->smoother_left()[i]->y()+yspeed);
         if(smoother_right()[i]!=0)
-            this->smoother_right()[i]->setPos(this->smoother_right()[i]->x(),this->smoother_right()[i]->y()+5);
+            this->smoother_right()[i]->setPos(this->smoother_right()[i]->x(),this->smoother_right()[i]->y()+yspeed);
         if(smoother_mid_s()[i]!=0)
-            this->smoother_mid_s()[i]->setPos(this->smoother_mid_s()[i]->x(),this->smoother_mid_s()[i]->y()+5);
+            this->smoother_mid_s()[i]->setPos(this->smoother_mid_s()[i]->x(),this->smoother_mid_s()[i]->y()+yspeed);
         if(smoother_mid_e()[i]!=0)
-            this->smoother_mid_e()[i]->setPos(this->smoother_mid_e()[i]->x(),this->smoother_mid_e()[i]->y()+5);
+            this->smoother_mid_e()[i]->setPos(this->smoother_mid_e()[i]->x(),this->smoother_mid_e()[i]->y()+yspeed);
     }
     if(this->left()->y()>-188 && this->call_from_initial == 1)
     {

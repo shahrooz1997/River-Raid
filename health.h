@@ -8,6 +8,7 @@ public:
     Health(QGraphicsItem *parent=0);
     int get_health();
     void dec_health();
+    void init();
 private:
     int health;
 };

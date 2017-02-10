@@ -10,9 +10,13 @@
 #include "bullet.h"
 
 extern Game *game;
+extern int yspeed;
 
 Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
+    myYspeed = yspeed;
+
+    flag = 0;
     // set graphic
     setPixmap(QPixmap(":/images/ap.png"));
     setPos(380,550-115);
@@ -32,6 +36,38 @@ Airplane::Airplane(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     connect(timer2, SIGNAL(timeout()), this, SLOT(dec_fuel()));
 //    timer2->start(200);
 
+    timer_inc_speed = new QTimer();
+    timer_dec_speed = new QTimer();
+    connect(timer_inc_speed, SIGNAL(timeout()),this,SLOT(inc_speed_slot()));
+    connect(timer_dec_speed, SIGNAL(timeout()),this, SLOT(dec_speed_slot()));
+
+    timer_norm_speed = new QTimer();
+    connect(timer_norm_speed, SIGNAL(timeout()),this,SLOT(norm_speed_slot()));
+
+}
+
+void Airplane::again()
+{
+    myYspeed = yspeed;
+
+    flag = 0;
+    // set graphic
+
+    setPixmap(QPixmap(":/images/ap.png"));
+    setPos(380,550-115);
+    start=1;
+
+//    connect(timer, SIGNAL(timeout()), this, SLOT(collision()));
+    timer->start(50);
+
+    fuel=100;
+//    connect(timer2, SIGNAL(timeout()), this, SLOT(dec_fuel()));
+//    timer2->start(200);
+//    connect(timer_inc_speed, SIGNAL(timeout()),this,SLOT(inc_speed_slot()));
+//    connect(timer_dec_speed, SIGNAL(timeout()),this, SLOT(dec_speed_slot()));
+
+//    connect(timer_norm_speed, SIGNAL(timeout()),this,SLOT(norm_speed_slot()));
+
 }
 
 void Airplane::keyPressEvent(QKeyEvent *event){
@@ -47,6 +83,12 @@ void Airplane::keyPressEvent(QKeyEvent *event){
         setPixmap(QPixmap(":/images/ap-right.png"));
         if (pos().x() + pixmap().width() < 800)
         setPos(x()+20,y());
+    }
+    else if (event->key() == Qt::Key_Up){
+        inc_speed();//increase speed up to 4 units
+    }
+    else if (event->key() == Qt::Key_Down){
+        dec_speed();//decrease speed up to 3 units
     }
     // shoot with the spacebar
     else if (event->key() == Qt::Key_Space){
@@ -69,6 +111,10 @@ void Airplane::keyReleaseEvent(QKeyEvent *event)
 {
     if((event->key() == Qt::Key_Right) || (event->key() == Qt::Key_Left))
         setPixmap(QPixmap(":/images/ap.png"));
+    else if(event->key() == Qt::Key_Up || event->key() == Qt::Key_Down)
+    {
+        norm_speed();
+    }
     return;
 }
 
@@ -82,6 +128,9 @@ Airplane::~Airplane()
 {
     delete timer;
     delete timer2;
+    delete timer_dec_speed;
+    delete timer_inc_speed;
+    delete timer_norm_speed;
 }
 
 void Airplane::collision()
@@ -94,6 +143,9 @@ void Airplane::collision()
     {
         if(typeid(*(colliding_items[i])) != typeid(Fuel_depot) && typeid(*(colliding_items[i])) != typeid(Bullet))
         {
+            //set speed
+            yspeed = myYspeed;
+
             //decrease health;
             game->dec_health();
             // remove them from the scene (still on the heap)
@@ -156,10 +208,79 @@ void Airplane::setStart(bool value)
     start = value;
 }
 
+void Airplane::inc_speed()
+{
+    if(flag == 0)
+    {
+        flag = 1;
+        myYspeed = yspeed;
+        timer_inc_speed->start(100);
+    }
+    return;
+}
+
+void Airplane::dec_speed()
+{
+    if(flag == 0)
+    {
+        flag = 1;
+        myYspeed = yspeed;
+        timer_dec_speed->start(100);
+    }
+    return;
+}
+
+void Airplane::norm_speed()
+{
+    timer_dec_speed->stop();
+    timer_inc_speed->stop();
+    timer_norm_speed->start(200);
+    return;
+}
+
 void Airplane::re_fuel()
 {
     fuel = 100;
     game->foot()->slider()->setPos(490,533);
+}
+
+void Airplane::inc_speed_slot()
+{
+    if(yspeed < myYspeed + 10)
+    {
+        yspeed += 1;
+    }
+    qDebug() << "speed is "<<yspeed;
+    return;
+}
+
+void Airplane::dec_speed_slot()
+{
+    if(yspeed > myYspeed - 3)
+    {
+        yspeed -= 1;
+    }
+    qDebug() << "speed is "<<yspeed;
+    return;
+}
+
+void Airplane::norm_speed_slot()
+{
+    if(yspeed < myYspeed)
+    {
+        yspeed += 1;
+    }
+    else if(yspeed > myYspeed)
+    {
+        yspeed -= 1;
+    }
+    else
+    {
+        flag = 0;
+        timer_norm_speed->stop();
+    }
+    qDebug() << "speed is "<<yspeed;
+    return;
 }
 
 QTimer *Airplane::getTimer2() const
