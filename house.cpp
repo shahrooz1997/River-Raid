@@ -6,6 +6,7 @@
 extern Game *game;
 extern int yspeed;
 
+
 House::House(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     /* a random number */
@@ -34,6 +35,7 @@ House::~House()
 void House::move()
 {
     setPos(x(),y()+yspeed);
+
     if(pos().y()+pixmap().height()>600) {
         game->scene()->removeItem(this);
         delete this;

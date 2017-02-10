@@ -12,6 +12,7 @@ Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     int xPos = qrand()%50;
     int yPos = -80;
 
+
     int f = qrand()%2;
     if(f)
         xPos += 200;
