@@ -4,6 +4,8 @@
 #include <typeinfo>
 
 extern Game *game;
+extern int yspeed;
+
 
 House::House(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
@@ -32,7 +34,8 @@ House::~House()
 
 void House::move()
 {
-    setPos(x(),y()+5);
+    setPos(x(),y()+yspeed);
+
     if(pos().y()+pixmap().height()>600) {
         game->scene()->removeItem(this);
         delete this;

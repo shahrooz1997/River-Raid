@@ -2,6 +2,7 @@
 #include "game.h"
 
 extern Game *game1;
+extern int yspeed;
 
 Map_start::Map_start(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
@@ -11,6 +12,7 @@ Map_start::Map_start(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
     _right->setPos(496,-80);
     _bridge = new Bridge();
     _bridge->setPos(304,-74);
+    setZValue(8);
 
     timer = new QTimer();
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -67,9 +69,9 @@ void Map_start::stop_timer()
 
 void Map_start::move()
 {
-    _right->setPos(_right->x(),_right->y()+5);
-    _left->setPos(_left->x(),_left->y()+5);
-    _bridge->setPos(_bridge->x(),_bridge->y()+5);
+    _right->setPos(_right->x(),_right->y()+yspeed);
+    _left->setPos(_left->x(),_left->y()+yspeed);
+    _bridge->setPos(_bridge->x(),_bridge->y()+yspeed);
 
     if(_right->y()>600)
     {

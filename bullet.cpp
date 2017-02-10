@@ -7,6 +7,8 @@
 #include "bridge.h"
 #include "enemy.h"
 extern Game *game;
+extern int yspeed;
+extern int max_speed;
 
 Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 {
@@ -119,6 +121,12 @@ void Bullet::move(){
         }
         else if(typeid(*(colliding_items[i])) == typeid(Bridge))
         {
+            //increase speed game
+            if(yspeed < max_speed)
+            {
+                yspeed+=1;
+            }
+
             // increase the score
             game->score()->inc_score(500);
             qDebug() << "the bullet hit Bridge.";

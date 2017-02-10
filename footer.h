@@ -14,6 +14,7 @@ public:
     Footer();
     void keyPressEvent(QKeyEvent *event);
     QGraphicsPixmapItem *slider();
+    void set_slider_pos();
     //public slots:
 //    void move_slider();
 private:

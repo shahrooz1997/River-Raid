@@ -23,3 +23,9 @@ QGraphicsPixmapItem *Footer::slider()
 {
     return _slider;
 }
+
+void Footer::set_slider_pos()
+{
+    _slider->setPos(490, 533);
+    return;
+}

@@ -4,12 +4,14 @@
 #include <typeinfo>
 
 extern Game *game;
+extern int yspeed;
 
 Enemy::Enemy(QGraphicsItem *parent): QGraphicsPixmapItem(parent)
 {
     /* a random number */
     int xPos = qrand()%50;
-    int yPos = -20;
+    int yPos = -80;
+
 
     int f = qrand()%2;
     if(f)
@@ -38,7 +40,7 @@ Enemy::~Enemy()
 
 void Enemy::move()
 {
-    setPos(x(),y()+5);
+    setPos(x(),y()+yspeed);
     if(movingx == 0 && pos().y()+pixmap().height()>250)
     {
         timer2->start(50);
