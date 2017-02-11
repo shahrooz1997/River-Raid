@@ -6,7 +6,7 @@
 #include <QGraphicsItem>
 #include <QTimer>
 #include <QThread>
-#include <tplanemove.h>
+#include "tplanemove.h"
 
 class Airplane:public QThread, public QGraphicsPixmapItem{
     Q_OBJECT

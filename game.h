@@ -1,12 +1,12 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include <QMediaPlayer>
 #include <QApplication>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
 #include <QObject>
-//#include <QMediaPlayer>
 #include "footer.h"
 #include <QTimer>
 #include "enemy.h"
@@ -71,7 +71,7 @@ public slots:
 private:
     Airplane *_airplane;
     QGraphicsScene *_scene;
-//    QMediaPlayer *bgsound;
+    QMediaPlayer *bgsound;
     Footer *_foot;
     QTimer *timer;
     Score *_score;

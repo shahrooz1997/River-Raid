@@ -1,11 +1,11 @@
 #ifndef BULLET_H
 #define BULLET_H
 
+#include <QMediaPlayer>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsItem>
 #include <QObject>
 #include <QTimer>
-//#include <QMediaPlayer>
 #include <QThread>
 #include "game.h"
 
@@ -21,7 +21,7 @@ public slots:
     void move();
 private:
     Bullet(QGraphicsItem *parent = 0);
-//    QMediaPlayer *bulletsound;
+    QMediaPlayer *bulletsound;
     QTimer *timer;
     static Bullet *instance;
 

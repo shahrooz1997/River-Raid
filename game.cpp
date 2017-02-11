@@ -28,6 +28,10 @@ Game::Game()
     this->setFixedSize(800,600);
     this->setBackgroundBrush(QBrush(QImage(":/images/bg.png")));
 
+    this->bgsound = new QMediaPlayer();
+    this->bgsound->setMedia(QUrl("qrc:/sounds/bg.mp3"));
+    this->bgsound->play();
+
     _foot = new Footer();
 
     //you should change the location of these code to start()
@@ -71,7 +75,7 @@ Game::~Game()
 {
     delete _airplane;
     delete _scene;
-//    delete bgsound;
+    delete bgsound;
     delete _foot;
     delete timer;
     delete _panel1;
@@ -323,6 +327,7 @@ void Game::start()
     this->_airplane->setZValue(10);
     this->scene()->addItem(this->_airplane);
     this->_airplane->setStart(1);
+
 //    this->bgsound = new QMediaPlayer();
 //    this->bgsound->setMedia(QUrl("qrc:/sounds/bg.mp3"));
 //    this->bgsound->play();
@@ -402,7 +407,7 @@ void Game::make_enemy()
         scene()->addItem(new Jet());
     else if(a == 3)
         scene()->addItem(new Helicopter());
-    if(counter >= 15) {
+    if(counter >= 3) {
         int a=((int)qrand())%5;
         if(a == 0)
             scene()->addItem(new Boat());

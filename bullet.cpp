@@ -15,9 +15,9 @@ Bullet::Bullet(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
     //set the pic of bullet
     setPixmap(QPixmap(":/images/bullet.png"));
     //initialize the sound
-//    this->bulletsound = new QMediaPlayer();
-//    this->bulletsound->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
-//    this->bulletsound->play();
+    this->bulletsound = new QMediaPlayer();
+    this->bulletsound->setMedia(QUrl("qrc:/sounds/bullet.mp3"));
+    this->bulletsound->play();
 
     timer = new QTimer(this);
     connect(timer, SIGNAL(timeout()), this, SLOT(move()));
@@ -130,6 +130,21 @@ void Bullet::move(){
             // increase the score
             game->score()->inc_score(500);
             qDebug() << "the bullet hit Bridge.";
+            // remove them from the scene (still on the heap)
+            scene()->removeItem(colliding_items[i]);
+            scene()->removeItem(this);
+            // delete them from the heap to save memory
+            delete this;
+
+            // return (all code below refers to a non existint bullet)
+            return;
+        }
+        else if(typeid(*(colliding_items[i])) == typeid(Balloon))
+        {
+            // increase the score
+            game->score()->inc_score(60);
+            qDebug() << "the bullet hit Balloon.";
+
             // remove them from the scene (still on the heap)
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
