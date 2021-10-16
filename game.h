@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <QMediaPlayer>
 #include <QApplication>
+#include <QMediaPlayer>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>

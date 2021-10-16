@@ -3,6 +3,7 @@
 
 #include <QtCore>
 #include <QtGui>
+#include <QGraphicsItem>
 
 class Button
 //        : public QGraphicsRectItem

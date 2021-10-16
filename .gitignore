@@ -1,0 +1,8 @@
+*.o
+*.swp
+moc_*.cpp
+moc_*.h
+.qmake.stash
+River-Raid.pro.user.*
+Makefile
+
